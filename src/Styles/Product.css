@@ -1,0 +1,162 @@
+.product-main-content {
+    background-color: #f0f2f5; /* Light grey background for the main content area */
+}
+
+.product-hero-section {
+    background-color: #607df9;
+    padding: 2rem;
+}
+
+.product-hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* Center the container */
+}
+
+.product-text-content {
+    flex: 1; /* Allows text content to take up available space */
+    text-align: left;
+}
+
+.product-title {
+    font-size: 3rem; /* Large font size for the title */
+    font-weight: 700;
+    color: #fff; /* Dark color for title */
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.product-description {
+    font-size: 1.15rem; /* Slightly smaller font for description */
+    color: #fff;
+    line-height: 1.6;
+    margin-bottom: 0; /* Ensure no default bottom margin interferes */
+}
+
+/* Add margin-top to TryMe button wrapper specifically within product text content */
+.product-text-content .try-me-wrapper {
+    margin-top: 4rem; /* Adjust this value as needed */
+}
+
+.product-image-content {
+    flex: 1; /* Allows image content to take up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Optional: if you want rounded corners for the image */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .product-hero-container {
+        flex-direction: column; /* Stack items vertically */
+        text-align: center; /* Center text for stacked layout */
+    }
+
+    .product-text-content {
+        order: 2; /* Text content below image */
+        text-align: center; /* Center text */
+    }
+
+    .product-image-content {
+        order: 1; /* Image content on top */
+        margin-bottom: 2rem; /* Space between image and text */
+    }
+
+    .product-title {
+        font-size: 2.2rem; /* Reduced font size for title on smaller screens */
+    }
+
+    .product-description {
+        font-size: 1rem; /* Reduced font size for description */
+    }
+
+    .product-hero-image {
+        max-width: 50%; /* Adjust image size for smaller screens */
+    }
+}
+
+/* Introduction Section Styles */
+.product-introduction-section {
+    padding: 2rem;
+    background-color: #ffffff; /* Or any other color you prefer for this section */
+}
+
+.product-introduction-container {
+    max-width: 900px; /* Or your preferred max-width */
+    margin: 0 auto; /* Center the container */
+    text-align: center;
+}
+
+.product-introduction-title {
+    font-size: 2.5rem; /* Adjust as needed */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.product-introduction-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: #607df9; /* Accent color for the underline */
+    border-radius: 2px;
+}
+
+/* Video Embed Styles */
+.video-frame-container {
+    width: 100%; /* Make it responsive, will be constrained by product-introduction-container */
+    max-width: 1200px; /* Max width for the video container - Increased from 700px */
+    margin: 2rem auto; /* Center the video container, added vertical margin */
+    padding: 15px; /* This padding creates the space for the "border" */
+    background-color: #607df9; /* This will be the border color */
+    border-radius: 12px; /* Rounded corners for the outer border */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* A subtle but professional shadow */
+    box-sizing: border-box;
+}
+
+.video-aspect-ratio-keeper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio (9 / 16 = 0.5625) */
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 8px; /* Inner rounded corners for the video, slightly smaller than container's padding */
+}
+
+.video-aspect-ratio-keeper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none; /* Remove iframe default border */
+}
+
+/* Responsive adjustments for video section if needed */
+@media (max-width: 768px) {
+    .product-introduction-title {
+        font-size: 2rem;
+    }
+    .video-frame-container {
+        padding: 10px; /* Slightly smaller border for smaller screens */
+        margin: 1.5rem auto;
+    }
+    .video-aspect-ratio-keeper {
+        border-radius: 6px; /* Adjust inner radius for smaller screens */
+    }
+}

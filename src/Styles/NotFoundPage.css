@@ -1,0 +1,54 @@
+.not-found-main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    min-height: calc(100vh - 160px); /* Adjust 160px based on your header/footer combined height */
+    background-color: #f0f2f5; /* Light background */
+}
+
+.not-found-container {
+    max-width: 600px;
+}
+
+.not-found-title {
+    font-size: 6rem; /* Large 404 text */
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.not-found-message {
+    font-size: 1.75rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.not-found-suggestion {
+    font-size: 1.1rem;
+    color: #777;
+}
+
+.not-found-suggestion a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.not-found-suggestion a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .not-found-title {
+        font-size: 4.5rem;
+    }
+    .not-found-message {
+        font-size: 1.5rem;
+    }
+    .not-found-suggestion {
+        font-size: 1rem;
+    }
+} 

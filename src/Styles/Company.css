@@ -1,0 +1,864 @@
+.hero-section {
+    position: relative;
+    /* Needed for absolute positioning of video and overlay */
+    background: #e8f0fe;
+    /* Fallback background color */
+    padding: 0;
+    /* Remove padding if video fills the section */
+    text-align: center;
+    overflow: hidden;
+    /* Prevent content overflow */
+    height: 60vh;
+    /* Adjust height as desired, or use min-height */
+    display: flex;
+    /* For centering content */
+    align-items: center;
+    /* For centering content */
+    justify-content: center;
+    /* For centering content */
+}
+
+.hero-video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Cover the area, may crop */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    /* Behind the content overlay */
+}
+
+.hero-content-overlay {
+    position: relative;
+    z-index: 2;
+    /* On top of the video */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Optional: Slight dark tint for text readability */
+    padding: 2rem;
+    /* Padding for the content within the overlay */
+}
+
+.hero-text-container {
+    display: flex;
+    align-items: center;
+    /* Vertically center title and subtitle box */
+    justify-content: center;
+    /* Horizontally center overall container */
+    gap: 2rem;
+    /* Space between title and subtitle box on larger screens */
+    width: 100%;
+    max-width: 860px;
+    /* Max width for content */
+}
+
+.hero-title-video {
+    /* Renamed from hero-title to avoid conflict */
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #fff;
+    /* White color for title */
+    margin: 0;
+    flex: 1;
+    /* Allow title to take available space */
+    text-align: left;
+    /* Title on the left */
+}
+
+.hero-subtitle-box {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1.5rem;
+    border-radius: 8px;
+    flex: 1;
+    max-width: 600px;
+    /* Increased max-width to better accommodate new layout */
+    overflow: hidden;
+    /* Important for showing one slide at a time and for animations */
+    position: relative;
+    /* For potential absolute positioning of slides if needed */
+    min-height: 310px;
+    /* Added to prevent collapse due to absolute positioned children */
+}
+
+/* New wrapper for subtitle box and arrows */
+.hero-subtitle-box-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Center the box and arrows */
+    gap: 0.5rem;
+    /* Space between arrows and box */
+    flex: 1;
+    /* Allow this container to take space */
+    max-width: 700px;
+    /* Control overall width including arrows */
+}
+
+
+/* Responsive adjustments for the slide content AND ARROWS */
+@media (max-width: 768px) {
+    .hero-subtitle-box-container {
+        flex-direction: row;
+        /* Keep arrows on sides */
+        width: 95%;
+        /* Adjust width */
+        gap: 0.2rem;
+    }
+
+    .hero-subtitle-box {
+        padding: 1.5rem;
+        order: 2;
+        /* Box in middle */
+        max-width: 100%;
+        /* Allow box to fill space between arrows */
+    }
+}
+
+/* Existing responsive styles for hero section */
+@media (max-width: 768px) {
+    .hero-section {
+        height: auto;
+        /* Adjust height for smaller screens */
+        min-height: 60vh;
+    }
+
+    .hero-text-container {
+        flex-direction: column;
+        /* Stack title and subtitle box */
+        text-align: center;
+        /* Center text for stacked layout */
+        gap: 1.5rem;
+    }
+
+    .hero-title-video {
+        font-size: 2.2rem;
+        /* Adjust title size for smaller screens */
+        text-align: center;
+        /* Center title text */
+        width: 100%;
+    }
+
+    .hero-subtitle-box {
+        max-width: 90%;
+        /* Allow box to be wider on small screens */
+        padding: 1rem;
+    }
+
+    .hero-subtitle-video {
+        font-size: 1rem;
+        text-align: center;
+        /* Center subtitle text */
+    }
+}
+
+.quote-section {
+    max-width: 1000px;
+    margin: 1rem auto;
+    padding: 1.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-title {
+    color: #1a73e8;
+    margin: 0;
+    /* Adjusted from h3 */
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+@media (max-width: 480px) {
+
+    /* Rules for screens 480px and below would go here */
+    /* For now, it can be empty or contain specific overrides */
+    .hero-title-video {
+        font-size: 2.5rem;
+        /* Example: Further reduce title size on very small screens */
+    }
+
+    .slide-button {
+        padding: 0.6rem 1rem;
+        /* Adjust button padding */
+        font-size: 0.9rem;
+    }
+
+    .slide-image {
+        height: 150px;
+        /* Further adjust image height */
+    }
+}
+
+/* What we offer Section */
+.what-we-offer-section {
+    background-color: #1c1c1e;
+    /* Dark background */
+    color: #fff;
+    /* Light text color */
+    padding: 3rem 1rem;
+    /* Vertical and horizontal padding */
+    text-align: center;
+    /* Center the main heading */
+}
+
+.section-heading {
+    /* General class for section headings if you want to reuse */
+    font-family: "Roboto", serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    /* White heading for dark background */
+    position: relative;
+    /* For pseudo-element positioning */
+    padding-bottom: 10px;
+    /* Space for the line below */
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 4px;
+    background-color: #607df9; /* Accent color for the underline */
+    border-radius: 2px;
+}
+
+.offer-content-container {
+    display: flex;
+    align-items: center;
+    /* Align items to the top */
+    gap: 2rem;
+    /* Space between left text and right slider */
+    max-width: 1100px;
+    margin: 0 auto;
+    /* Center the content container */
+    text-align: left;
+    /* Reset text align for children */
+}
+
+.offer-text-content {
+    flex: 1;
+    /* Take up available space, adjust ratio with slider if needed */
+    padding-right: 2rem;
+    /* Space between text and slider, if not using gap */
+}
+
+.offer-subheading {
+    font-family: "Radley", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3rem;
+    /* Adjusted font size for cursive */
+    color: #fff;
+    /* Blue color for emphasis */
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    position: relative;
+    /* For pseudo-element positioning */
+    padding-bottom: 10px;
+    /* Space for the line below */
+}
+
+.offer-subheading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    /* Position the line slightly below the text, adjust as needed */
+    width: 150px;
+    /* Length of the line */
+    height: 4px;
+    /* Max thickness on the left */
+    background-color: #E02227;
+    /* Red color */
+    clip-path: polygon(0 0, 100% 35%, 100% 65%, 0 100%);
+    /* Tapers from 100% to 30% height */
+}
+
+.offer-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+    /* Slightly lighter than pure white for readability */
+}
+
+.offer-slider-container {
+    flex: 2;
+    /* Slider takes more space, adjust ratio as needed */
+    overflow: hidden;
+    /* Hide scrollbar of this container */
+}
+
+.offer-slider {
+    display: flex;
+    gap: 1.5rem;
+    /* Space between cards */
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    /* Added bottom padding for scrollbar */
+    overflow-x: auto;
+    /* Enable horizontal scrolling */
+    /* Reveal and style scrollbar */
+    -ms-overflow-style: auto;
+    /* IE and Edge */
+    scrollbar-width: thin;
+    /* Firefox - auto, thin, or none */
+    scrollbar-color: #1a73e8 #444444;
+    /* Firefox - thumb and track color */
+}
+
+.offer-slider::-webkit-scrollbar {
+    /* display: none; Chrome, Safari, Opera - REMOVED to show scrollbar */
+    height: 10px;
+    /* Height of the horizontal scrollbar */
+    background-color: transparent;
+    /* Make scrollbar background transparent if track has its own */
+}
+
+.offer-slider::-webkit-scrollbar-track {
+    background: #444444;
+    /* Dark track color */
+    border-radius: 10px;
+    margin: 0 0.5rem;
+    /* Add some horizontal margin to the track */
+}
+
+.offer-slider::-webkit-scrollbar-thumb {
+    background-color: #1a73e8;
+    /* Blue thumb color */
+    border-radius: 10px;
+    border: 2px solid #444444;
+    /* Creates padding around thumb, matches track color */
+}
+
+.offer-slider::-webkit-scrollbar-thumb:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+.offer-card {
+    background-color: #ffffff;
+    /* White background */
+    border-radius: 8px;
+    min-width: 280px;
+    /* Minimum width for each card */
+    max-width: 320px;
+    /* Maximum width for each card */
+    flex: 0 0 auto;
+    /* Prevent cards from shrinking/growing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Adjusted shadow for lighter card */
+    text-align: center;
+}
+
+.offer-card-image {
+    width: 100%;
+    /* Adjust size as needed */
+    object-fit: contain;
+    /* Or cover, depending on image style */
+}
+
+.offer-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333333;
+    /* Dark grey text color */
+    padding: 0px 10px;
+    margin: 1rem 0;
+}
+
+.offer-card-description {
+    font-size: 0.9rem;
+    color: #555555;
+    /* Medium grey text color */
+    line-height: 1.4;
+    padding: 0px 10px;
+    margin-bottom: 1.5rem;
+}
+
+/* Responsive styles for "What we offer" section */
+@media (max-width: 992px) {
+
+    /* Tablet and below */
+    .offer-content-container {
+        flex-direction: column;
+        align-items: center;
+        /* Center items when stacked */
+        text-align: center;
+        /* Center text for children */
+    }
+
+    .offer-text-content {
+        padding-right: 0;
+        /* Remove padding when stacked */
+        margin-bottom: 2rem;
+        /* Space between text and slider */
+        max-width: 600px;
+        /* Limit width of text content */
+    }
+
+    .offer-subheading {
+        font-size: 2.8rem;
+        /* Adjusted for cursive on tablet */
+    }
+
+    .offer-subheading::after {
+        width: 70%;
+        /* Adjust line width to 70% of subheading width */
+    }
+    
+    /* Specific styling for ChaTA heading underline */
+    .chata-heading::after {
+        width: 25%;
+        left: 35%;
+    }
+
+    .offer-slider-container {
+        width: 100%;
+        /* Slider takes full width */
+        flex: none;
+        /* Reset flex property */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Further adjustments for smaller mobile */
+    .section-heading {
+        font-size: 2.5rem;
+    }
+
+    .offer-subheading {
+        font-size: 2rem;
+        /* "ChaTA Features" title on top, adjusted for cursive */
+    }
+
+    .offer-card {
+        min-width: 250px;
+    }
+}
+
+/* Provides Features Grid */
+.provides-features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 3rem auto 0 auto;
+}
+
+.provides-feature-card {
+    height: 100%; /* Card will take full height of its parent (.hub-card-container) */
+    width: 320px;  /* Default width for larger screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Align content (image, then title) to the top */
+    align-items: center; /* Center content horizontally */
+    padding: 0rem 1rem; /* Padding inside the card */
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #ffffff; /* Assuming cards have a white background */
+    border-radius: 8px; /* Rounded corners for cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 1rem; /* Space below each card if they wrap (though align-items:stretch might make this less relevant if parent controls all spacing) */
+    /* Animation properties */
+    opacity: 0;
+    transform: translateX(0);
+    transition: opacity 0.6s cubic-bezier(.4, 0, .2, 1), transform 0.6s cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity, transform;
+}
+
+/* Animation states for provides feature cards */
+.provides-feature-card.from-left {
+    transform: translateX(-60px);
+}
+
+.provides-feature-card.from-right {
+    transform: translateX(60px);
+}
+
+.provides-feature-card.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.provides-feature-card .feature-card-image {
+    max-width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 200px; /* Max height for the image within the card */
+    object-fit: contain; /* Scale image to fit within bounds, maintaining aspect ratio */
+    margin-bottom: 1rem;
+    border-radius: 6px; /* Slightly rounded corners for the image itself */
+}
+
+.provides-feature-card .feature-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #007bff;
+    margin-top: 0; /* Resetting, as flex-start on parent will handle top alignment */
+    line-height: 1.3;
+}
+
+/* Styling for the containers of the cards */
+.provides-features-hub,
+.future-features-hub { /* Ensure Company.js uses .future-features-hub for the future section cards container */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* This makes items in a row take the same height */
+    justify-content: center; /* Center cards in the hub */
+    gap: 1.5rem; /* Adjust gap between cards as needed */
+    padding: 1rem 0; /* Padding for the hub itself */
+}
+
+/* Media query from previous App.css for card width on smaller screens */
+@media (max-width: 768px) {
+    .provides-features-hub .provides-feature-card,
+    .future-features-hub .provides-feature-card { /* Apply to future cards as well */
+        width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Hub and Spoke Features Grid */
+.provides-features-hub {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2.5rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    min-height: 400px;
+}
+
+.hub-card-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    min-height: 0;
+}
+
+/* Responsive for hub grid */
+@media (max-width: 768px) {
+    .provides-features-hub {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        min-height: 500px;
+        gap: 2rem;
+        max-width: 95vw;
+    }
+
+    .provides-features-hub .provides-feature-card {
+        width: 280px;
+        /* Consistent width for single cards per row */
+        margin-left: auto;
+        /* Ensure centering if parent doesn't fully center */
+        margin-right: auto;
+        /* Ensure centering if parent doesn't fully center */
+    }
+}
+
+.provides-section {
+    background-color: #fff;
+    /* Dark background */
+    color: #222;
+    /* Light text color */
+    padding: 0rem 1rem;
+    /* Vertical and horizontal padding */
+    text-align: center;
+    /* Center the main heading */
+}
+
+.future-section {
+    background-color: #222;
+    /* Dark background */
+    color: #fff;
+    /* Light text color */
+    padding: 0rem 1rem;
+    /* Vertical and horizontal padding */
+    text-align: center;
+    /* Center the main heading */
+}
+
+.future-section .offer-text-content {
+    order: 2;
+    /* Ensure text content comes after features hub on larger screens */
+    text-align: right;
+    /* Align text to the right */
+}
+
+.future-section .offer-text-content .offer-subheading::after {
+    left: auto;
+    /* Reset left positioning */
+    right: 0;
+    /* Position to the right */
+    clip-path: polygon(100% 0, 0 35%, 0 65%, 100% 100%);
+    /* Reverse the taper */
+}
+
+.future-section .provides-features-hub {
+    order: 1;
+    /* Ensure features hub comes before text content on larger screens */
+}
+
+/* Responsive adjustments for future section */
+@media (max-width: 992px) {
+
+    /* Apply column layout for tablets and below */
+    .future-section .offer-content-container {
+        flex-direction: column;
+    }
+
+    .future-section .offer-text-content,
+    .future-section .provides-features-hub {
+        order: unset;
+        /* Reset order for column layout */
+        width: 100%;
+        /* Take full width in column layout */
+    }
+
+    .future-section .offer-text-content {
+        text-align: center;
+        /* Center text for column layout */
+    }
+
+    .future-section .offer-text-content .offer-subheading {
+        display: inline-block;
+        /* Make width fit content for accurate underlining */
+    }
+
+    .future-section .offer-text-content .offer-subheading::after {
+        left: 50%;
+        /* Position to the center */
+        transform: translateX(-50%);
+        /* Adjust for centering */
+        right: auto;
+        /* Reset right positioning */
+        width: 100%;
+        /* Underline spans the width of the inline-block subheading */
+        clip-path: polygon(0 0, 100% 35%, 100% 65%, 0 100%);
+        /* Original taper for smaller screens */
+    }
+
+    .future-section .offer-text-content {
+        margin-bottom: 2rem;
+        /* Add some space below the subheading */
+    }
+}
+
+.backedby-section {
+    background-color: #fff;
+    /* Dark background */
+    color: #1c1c1e;
+    /* Light text color */
+    padding: 3rem 1rem;
+    /* Vertical and horizontal padding */
+    text-align: center;
+    /* Center the main heading */
+}
+
+.backedby-logos-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin: 2rem auto 0 auto;
+    max-width: 1800px;
+}
+
+.backedby-logo-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 120px;
+    min-width: 120px;
+    max-width: 480px;
+}
+
+.backedby-logo-img {
+    max-width: 360px;
+    max-height: 360px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(0.2) contrast(1.1);
+    transition: filter 0.2s;
+}
+
+.backedby-logo-img:hover {
+    filter: grayscale(0) contrast(1.2) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+}
+
+@media (max-width: 1450px) {
+    .backedby-logos-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 900px;
+    }
+
+    .backedby-logo-col {
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 735px) {
+    .backedby-logos-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+        max-width: 195vw;
+    }
+
+    .backedby-logo-img {
+        max-width: 90vw;
+        max-height: 190px;
+    }
+    
+    .backedby-logo-col:last-child .backedby-logo-img {
+        max-height: 120px;
+    }
+}
+
+.encandoai-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0 2rem 0;
+    background: #fff;
+}
+
+.encandoai-heading {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    letter-spacing: 0.1em;
+    color: #fff;
+    line-height: 1.1;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.encandoai-heading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    pointer-events: none;
+    filter: blur(20px);
+}
+
+.encandoai-heading:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .encandoai-heading {
+        font-size: 3.2rem;
+        width: 95%;
+    }
+}
+
+@media (max-width: 500px) {
+    .encandoai-heading {
+        font-size: 2.1rem;
+        width: 99%;
+    }
+}
+
+@media (max-width: 768px) {
+    .encandoai-heading::before {
+        width: 80px;
+        height: 80px;
+        filter: blur(15px);
+    }
+}
+
+/* Add any other specific styles for the Company page below */
+
+/* Arrow Cards Grid Styles */
+.arrow-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columns */
+    grid-template-rows: repeat(3, 1fr); /* 3 rows */
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.arrow-card-item {
+    opacity: 0;
+    transform: translateX(-60px); /* Start position: slide from left */
+    transition: opacity 0.6s cubic-bezier(.4, 0, .2, 1), transform 0.6s cubic-bezier(.4, 0, .2, 1);
+    will-change: opacity, transform;
+}
+
+.arrow-card-item.visible {
+    opacity: 1;
+    transform: translateX(0); /* End position: normal position */
+}
+
+/* Stagger the animation for each card */
+.arrow-card-item:nth-child(1) { transition-delay: 0.1s; }
+.arrow-card-item:nth-child(2) { transition-delay: 0.2s; }
+.arrow-card-item:nth-child(3) { transition-delay: 0.3s; }
+.arrow-card-item:nth-child(4) { transition-delay: 0.4s; }
+.arrow-card-item:nth-child(5) { transition-delay: 0.5s; }
+.arrow-card-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* Responsive adjustments for arrow cards */
+@media (max-width: 768px) {
+    .arrow-cards-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+        grid-template-rows: repeat(6, 1fr); /* 6 rows */
+        gap: 1rem;
+        max-width: 400px;
+    }
+    
+    .arrow-card-item {
+        transform: translateX(-40px); /* Smaller slide distance on mobile */
+    }
+    
+    .arrow-card-cta {
+        font-size: 16px;
+    }
+
+    .arrow-card-cta svg {
+        width: 50px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .arrow-cards-grid {
+        padding: 0.5rem;
+        max-width: 350px;
+    }
+}
