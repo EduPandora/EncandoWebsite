@@ -296,6 +296,14 @@ function Company() {
                 </div>
             </section>
 
+            {/* Investment Section */}
+            <section className="investment-section">
+                <div className="investment-content">
+                    <h2 className="investment-title">We're Seeking Angel Investment</h2>
+                    <p className="investment-subtitle">SAFE Round is Open</p>
+                </div>
+            </section>
+
             {/* Encando AI Dots Section */}
             <section className="encandoai-section">
                 <img src={require('../icons/company-name.svg').default} alt="Encando AI" className="encandoai-heading" />

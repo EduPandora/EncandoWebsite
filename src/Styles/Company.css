@@ -671,13 +671,14 @@
 }
 
 .backedby-logos-row {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
-    gap: 2.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
     flex-wrap: wrap;
     margin: 2rem auto 0 auto;
-    max-width: 1800px;
+    max-width: 900px;
 }
 
 .backedby-logo-col {
@@ -685,8 +686,8 @@
     align-items: center;
     justify-content: center;
     flex: 1 1 120px;
-    min-width: 120px;
-    max-width: 480px;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .backedby-logo-img {
@@ -697,24 +698,6 @@
     object-fit: contain;
     filter: grayscale(0.2) contrast(1.1);
     transition: filter 0.2s;
-}
-
-.backedby-logo-img:hover {
-    filter: grayscale(0) contrast(1.2) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
-}
-
-@media (max-width: 1450px) {
-    .backedby-logos-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        max-width: 900px;
-    }
-
-    .backedby-logo-col {
-        min-width: 0;
-        max-width: 100%;
-    }
 }
 
 @media (max-width: 735px) {
@@ -747,6 +730,7 @@
 
 .encandoai-heading {
     width: 80%;
+    max-width: 900px;
     margin: 0 auto;
     text-align: center;
     letter-spacing: 0.1em;
@@ -858,7 +842,55 @@
 
 @media (max-width: 480px) {
     .arrow-cards-grid {
-        padding: 0.5rem;
-        max-width: 350px;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Investment Section */
+.investment-section {
+    background-color: #222;
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.investment-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.investment-title {
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.2;
+}
+
+.investment-subtitle {
+    color: #888;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .investment-title {
+        font-size: 2rem;
+    }
+    
+    .investment-subtitle {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .investment-title {
+        font-size: 1.8rem;
+    }
+    
+    .investment-subtitle {
+        font-size: 1.2rem;
     }
 }
