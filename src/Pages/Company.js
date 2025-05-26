@@ -196,7 +196,7 @@ function Company() {
             {/* Hero Section */}
             <section className="hero-section">
                 <video autoPlay loop muted playsInline className="hero-video-background">
-                    <source src={`${process.env.PUBLIC_URL}/assets/homepage/CityView.mp4`} type="video/mp4" />
+                    <source src={`${process.env.PUBLIC_URL}/assets/homepage/HomepageBackground.mp4`} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
                 <div className="hero-content-overlay">
