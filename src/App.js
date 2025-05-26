@@ -8,7 +8,7 @@ import './Styles/App.css';
 
 function App() {
     return (
-        <Router basename="/EncandoWebsite">
+        <Router>
             <Routes>
                 <Route path="/" element={<Company />} />
                 <Route path="/product" element={<Product />} />
