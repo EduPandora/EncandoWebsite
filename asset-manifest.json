@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/www.encando.ai/static/css/main.aef9fb59.css",
-    "main.js": "/www.encando.ai/static/js/main.d955d922.js",
-    "static/js/453.fdc72b42.chunk.js": "/www.encando.ai/static/js/453.fdc72b42.chunk.js",
-    "static/media/company-name.svg": "/www.encando.ai/static/media/company-name.0c9010bfd247951ad076f2453d079402.svg",
-    "index.html": "/www.encando.ai/index.html",
-    "main.aef9fb59.css.map": "/www.encando.ai/static/css/main.aef9fb59.css.map",
-    "main.d955d922.js.map": "/www.encando.ai/static/js/main.d955d922.js.map",
-    "453.fdc72b42.chunk.js.map": "/www.encando.ai/static/js/453.fdc72b42.chunk.js.map"
+    "main.css": "/EncandoWebsite/static/css/main.aef9fb59.css",
+    "main.js": "/EncandoWebsite/static/js/main.5748bdea.js",
+    "static/js/453.fdc72b42.chunk.js": "/EncandoWebsite/static/js/453.fdc72b42.chunk.js",
+    "static/media/company-name.svg": "/EncandoWebsite/static/media/company-name.0c9010bfd247951ad076f2453d079402.svg",
+    "index.html": "/EncandoWebsite/index.html",
+    "main.aef9fb59.css.map": "/EncandoWebsite/static/css/main.aef9fb59.css.map",
+    "main.5748bdea.js.map": "/EncandoWebsite/static/js/main.5748bdea.js.map",
+    "453.fdc72b42.chunk.js.map": "/EncandoWebsite/static/js/453.fdc72b42.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aef9fb59.css",
-    "static/js/main.d955d922.js"
+    "static/js/main.5748bdea.js"
   ]
 }
