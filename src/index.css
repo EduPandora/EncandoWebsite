@@ -1,3 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* — Core brand colors — */
+  --color-primary:       #500000; /* your wine red */
+  --color-primary-light: #7f2929; /* 30% lighter (hover, highlights) */
+  --color-primary-dark:  #330000; /* 40% darker (footer, depth) */
+
+  /* — Complementary / secondary accent — */
+  --color-secondary:       #005050; /* teal-green complement */
+  --color-secondary-light: #338b8b; /* lighter teal for hover */
+  --color-secondary-dark:  #003838; /* deeper teal for footer */
+
+  /* — Neutral scale — */
+  --color-bg:           #f9fafb; /* your page background */
+  --color-surface:      #ffffff; /* white—for cards, modals */
+  --color-border:       #e5e7eb; /* light gray (borders, dividers) */
+  --color-text-primary: #111827; /* almost-black for body copy */
+  --color-text-secondary: #4b5563; /* mid-gray for subheadings */
+
+  /* — Semantic accents — */
+  --color-success:  #047857; /* teal-dark (states, badges) */
+  --color-info:     #1e40af; /* blue-dark */
+  --color-warning:  #b45309; /* amber-dark */
+  --color-danger:   #991b1b; /* deep red, for errors */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,6 +35,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9fafb;
 }
 
 code {

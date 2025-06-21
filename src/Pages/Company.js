@@ -2,316 +2,352 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import ArrowCard from '../Components/Elements/ArrowCard';
+import DemoRequestForm from '../Components/Elements/DemoRequestForm';
 import '../Styles/Company.css';
 
-const chaTAFeatures = [
-    {
-        id: 1,
-        title: "24/7 Help Desk"
-    },
-    {
-        id: 2,
-        title: "Interactive Channel"
-    },
-    {
-        id: 3,
-        title: "Analytics, ABET Report"
-    },
-    {
-        id: 4,
-        title: "Grading Feedback"
-    },
-    {
-        id: 5,
-        title: "Personalized Assessment"
-    },
-    {
-        id: 6,
-        title: "Privacy"
-    }
-];
+const BookIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v15H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+);
+const GraduationCapIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.838l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+);
+const LightbulbIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5C17.7 10.2 18 9 18 7c0-2.2-1.8-4-4-4S10 4.8 10 7c0 2 .3 3.2 1.5 4.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+);
+const BrainIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v0A2.5 2.5 0 0 1 9.5 7h-3A2.5 2.5 0 0 1 4 4.5v0A2.5 2.5 0 0 1 6.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v0A2.5 2.5 0 0 0 14.5 7h3a2.5 2.5 0 0 0 2.5-2.5v0A2.5 2.5 0 0 0 17.5 2Z"/><path d="M12 13a2.5 2.5 0 0 0 2.5-2.5v-3a2.5 2.5 0 0 1 2.5-2.5h0A2.5 2.5 0 0 1 19.5 7.5v3A2.5 2.5 0 0 1 17 13Z"/><path d="M12 13a2.5 2.5 0 0 1-2.5-2.5v-3a2.5 2.5 0 0 0-2.5-2.5h0A2.5 2.5 0 0 0 4.5 7.5v3A2.5 2.5 0 0 0 7 13Z"/><path d="M12 13a2.5 2.5 0 0 0 2.5 2.5v3a2.5 2.5 0 0 1-2.5 2.5h0a2.5 2.5 0 0 1-2.5-2.5v-3A2.5 2.5 0 0 1 9.5 13Z"/></svg>
+);
 
-const providesFeatureCards = [
-    { title: 'An Integrated Platform: For Students & Teachers', image: `${process.env.PUBLIC_URL}/assets/images/current-features/Feature1.png` },
-    { title: 'AI-assisted exam generation, auto-grading, and Q&A for video recordings', image: `${process.env.PUBLIC_URL}/assets/images/current-features/Feature2.png` },
-    { title: "Performance analysis to understand student's progress", image: `${process.env.PUBLIC_URL}/assets/images/current-features/Feature3.png` },
-    { title: '24/7 custom TA Social platform for students', image: `${process.env.PUBLIC_URL}/assets/images/current-features/Feature4.png` },
-];
 
-const futureFeatureCards = [
-    { title: 'Subject Specific Pretrained Models', image: `${process.env.PUBLIC_URL}/assets/images/future-features/Feature1.png` },
-    { title: 'Career coaching and job finding', image: `${process.env.PUBLIC_URL}/assets/images/future-features/Feature2.png` },
-    { title: 'Provide professional exam training, monitoring and certification', image: `${process.env.PUBLIC_URL}/assets/images/future-features/Feature3.png` },
-    { title: 'Continuing Education, upskilling and corporate training', image: `${process.env.PUBLIC_URL}/assets/images/future-features/Feature4.png` },
-];
+const UniversityIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H10v12H6"/>
+        <path d="M18 2h-1.5a2.5 2.5 0 0 0-2.5 2.5V22"/>
+        <path d="M14 14V2"/>
+    </svg>
+);
 
-const backedByLogos = [
-    { src: `${process.env.PUBLIC_URL}/assets/logos/TAMU.png`, alt: 'Logo 1' },
-    { src: `${process.env.PUBLIC_URL}/assets/logos/TAMU-Innovation.avif`, alt: 'Logo 2' },
-    { src: `${process.env.PUBLIC_URL}/assets/logos/NSF.png`, alt: 'Logo 3' },
-    { src: `${process.env.PUBLIC_URL}/assets/logos/NSF-I-Corps.jpg`, alt: 'Logo 4' },
-];
+const StudentsIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 22v-4a2 2 0 1 0-4 0v4"/>
+        <path d="M18 10a2 2 0 1 0-4 0"/>
+        <path d="M6 10a2 2 0 1 0-4 0"/>
+        <path d="M18 10h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2h-1"/>
+        <path d="M5 10H4a1 1 0 0 0-1 1v1a2 2 0 0 0 2 2h1"/>
+        <path d="m12 12-1-1-1 1"/>
+        <path d="M12 6a2 2 0 1 0-4 0"/>
+        <path d="M12 6h1a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2h-1"/>
+    </svg>
+);
 
-// Create a new component for the main page content
-function Company() {
-    // Create individual refs
-    const cardRef0 = useRef();
-    const cardRef1 = useRef();
-    const cardRef2 = useRef();
-    const cardRef3 = useRef();
-    
-    const futureCardRef0 = useRef();
-    const futureCardRef1 = useRef();
-    const futureCardRef2 = useRef();
-    const futureCardRef3 = useRef();
-    
-    const arrowCardRef0 = useRef();
-    const arrowCardRef1 = useRef();
-    const arrowCardRef2 = useRef();
-    const arrowCardRef3 = useRef();
-    const arrowCardRef4 = useRef();
-    const arrowCardRef5 = useRef();
-    
-    // Create arrays using useMemo
-    const cardRefs = useMemo(() => [cardRef0, cardRef1, cardRef2, cardRef3], []);
-    const [cardVisible, setCardVisible] = useState([false, false, false, false]);
-    const futureCardRefs = useMemo(() => [futureCardRef0, futureCardRef1, futureCardRef2, futureCardRef3], []);
-    const [futureCardVisible, setFutureCardVisible] = useState([false, false, false, false]);
-    
-    // Add refs and state for arrow cards
-    const arrowCardRefs = useMemo(() => [arrowCardRef0, arrowCardRef1, arrowCardRef2, arrowCardRef3, arrowCardRef4, arrowCardRef5], []);
-    const [arrowCardVisible, setArrowCardVisible] = useState([false, false, false, false, false, false]);
-    
-    // Define different colors for each arrow card
-    const arrowCardColors = [
-        "#6225E6", // Purple
-        "#E02227", // Red
-        "#1a73e8", // Blue
-        "#FBC638", // Yellow
-        "#28a745", // Green
-        "#dc3545"  // Dark Red
-    ];
+const TeacherIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4"/>
+        <path d="M18 10a2 2 0 1 0-4 0"/>
+        <path d="M6 10a2 2 0 1 0-4 0"/>
+        <path d="M18 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2h-1"/>
+        <path d="M4 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2H4"/>
+        <path d="M12 10a2 2 0 1 0-4 0"/>
+        <path d="M12 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2h-1"/>
+        <path d="M6 6.5V6c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v.5"/>
+    </svg>
+);
 
-    useEffect(() => {
-        const observers = cardRefs.map((ref, idx) => {
-            if (!ref.current) return null;
-            return new window.IntersectionObserver(
-                ([entry]) => {
-                    if (entry.isIntersecting) {
-                        setCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = true;
-                            return updated;
-                        });
-                    } else {
-                        setCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = false;
-                            return updated;
-                        });
-                    }
-                },
-                { threshold: 0.3 }
-            );
-        });
-        cardRefs.forEach((ref, idx) => {
-            if (ref.current && observers[idx]) observers[idx].observe(ref.current);
-        });
-        return () => {
-            observers.forEach((observer, idx) => {
-                if (observer && cardRefs[idx].current) observer.unobserve(cardRefs[idx].current);
-            });
-        };
-    }, [cardRefs]);
+// HERO SECTION COMPONENT
+const HeroSection = () => {
+    const scrollToSection = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    return (
+        <section className="bg-[#f9fafb] text-black py-40 md:py-40">
+            <div className="absolute inset-0 z-0 opacity-10 hidden md:block">
+                <BookIcon className="animate-float absolute top-[20%] left-[5%] h-16 w-16 text-[var(--color-primary)]"/>
+                <GraduationCapIcon className="animate-float absolute top-[15%] right-[10%] h-20 w-20 text-[var(--color-primary)]" />
+                <LightbulbIcon className="animate-float absolute bottom-[10%] left-[15%] h-12 w-12 text-[var(--color-primary)]" />
+                <BrainIcon className="animate-float absolute bottom-[20%] right-[20%] h-16 w-16 text-[var(--color-primary)]" />
+                <UniversityIcon className="animate-float absolute top-[60%] left-[25%] h-14 w-14 text-[var(--color-primary)]" />
+                <StudentsIcon className="animate-float absolute top-[55%] right-[5%] h-12 w-12 text-[var(--color-primary)]" />
+            </div>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
+                    <span className="block">AI-Powered </span>
+                    <span className="block text-red-900">Higher Education Platform</span>
+                </h1>
+                <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-gray-900">
+                    {/* Encando's AI platform, ChaTA, empowers educators and engages students with deeply personalized learning experiences—delivered anytime, anywhere. Free your faculty from repetitive tasks and give every student the support they need to succeed. */}
+                    At Encando, we harness advanced AI to transform higher education through deeply personalized learning experiences—delivered at scale, anytime, anywhere.
+                </p>
+                <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#cta" onClick={(e) => { e.preventDefault(); scrollToSection('cta'); }} className="w-full sm:w-auto inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Request a Demo
+                    </a>
+                    <a href="#features" onClick={(e) => { e.preventDefault(); scrollToSection('features'); }} className="w-full sm:w-auto text-[var(--color-secondary)] hover:text-[var(--color-secondary)] transition-colors duration-200 font-semibold">
+                        See How It Works &darr;
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
 
-    useEffect(() => {
-        const observers = futureCardRefs.map((ref, idx) => {
-            if (!ref.current) return null;
-            return new window.IntersectionObserver(
-                ([entry]) => {
-                    if (entry.isIntersecting) {
-                        setFutureCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = true;
-                            return updated;
-                        });
-                    } else {
-                        setFutureCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = false;
-                            return updated;
-                        });
-                    }
-                },
-                { threshold: 0.3 }
-            );
-        });
-        futureCardRefs.forEach((ref, idx) => {
-            if (ref.current && observers[idx]) observers[idx].observe(ref.current);
-        });
-        return () => {
-            observers.forEach((observer, idx) => {
-                if (observer && futureCardRefs[idx].current) observer.unobserve(futureCardRefs[idx].current);
-            });
-        };
-    }, [futureCardRefs]);
+// PROBLEM SECTION COMPONENT
+const ProblemCard = ({ icon, title, children }) => (
+    <div className="bg-white p-8 rounded-2xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300">
+        <div className="flex items-center justify-center h-64 w-full bg-[var(--color-primary)]/20 text-[var(--color-primary)] mb-6">
+            {icon}
+        </div>
+        <h3 className="text-xl font-bold text-black mb-3">{title}</h3>
+        <p className="text-gray-900">{children}</p>
+    </div>
+);
 
-    // Add useEffect for arrow card animations
-    useEffect(() => {
-        const observers = arrowCardRefs.map((ref, idx) => {
-            if (!ref.current) return null;
-            return new window.IntersectionObserver(
-                ([entry]) => {
-                    if (entry.isIntersecting) {
-                        setArrowCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = true;
-                            return updated;
-                        });
-                    } else {
-                        setArrowCardVisible(prev => {
-                            const updated = [...prev];
-                            updated[idx] = false;
-                            return updated;
-                        });
-                    }
-                },
-                { threshold: 0.3 }
-            );
-        });
-        arrowCardRefs.forEach((ref, idx) => {
-            if (ref.current && observers[idx]) observers[idx].observe(ref.current);
-        });
-        return () => {
-            observers.forEach((observer, idx) => {
-                if (observer && arrowCardRefs[idx].current) observer.unobserve(arrowCardRefs[idx].current);
-            });
-        };
-    }, [arrowCardRefs]);
+const ProblemSection = () => (
+    <section id="problem" className="bg-[var(--color-bg)] py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-black">The Old Way Isn't Working.</h2>
+                <p className="mt-4 max-w-2xl mx-auto text-lg text-[var(--color-text-primary)]">
+                    We understand the challenges facing modern education.
+                </p>
+            </div>
+            <div className="mt-16 grid gap-8 md:grid-cols-3">
+                <ProblemCard icon={<img src="/assets/images/problem/instructor.png" alt="Tired Instructor" className="w-full " />} title="For Instructors">
+                    {/* Faculty are burning out. They're buried under a mountain of repetitive student questions, manual grading, and administrative tasks, leaving little time for the high-impact teaching and mentorship that truly matter. */}
+                    <p>Faculty burnout is real:</p>
+                    <p>Routine student questions</p>
+                    <p>Manual grading & regrading</p>
+                    <p>LMS and email overload</p>
+                    <p>Little time left for mentorship, course innovation, or research</p>
+                </ProblemCard>
+                <ProblemCard icon={<img src="/assets/images/problem/student.png" alt="Tired Student" className="w-full" />} title="For Students">
+                    {/* Learners feel anonymous. In large classes, personalized attention is rare. They struggle to get timely help, leading to disengagement, frustration, and a greater risk of falling behind. */}
+                    <p>Students feel unseen:</p>
+                    {/* <p>In large classes, they often:</p> */}
+                    <p>Waiting too long for answers</p>
+                    <p>Not getting personalized feedback</p>
+                    <p>Disengagement, losing motivation and confidence</p>
+                </ProblemCard>
+                <ProblemCard icon={<img src="/assets/images/problem/university.png" alt="Tired Institution" className="w-full" />} title="For Institutions">
+                    {/* Scaling quality education is a constant challenge. Universities are grappling with how to improve student retention, ensure academic integrity, and deliver a world-class experience without exponentially increasing costs. */}
+                    <p>Scaling quality education is hard:</p>
+                    <p>Maintain academic standards and integrity</p>
+                    <p>Improve retention and engagement</p>
+                    <p>Control costs without adding staff</p>
+                </ProblemCard>
+            </div>
+            <div className="mt-16">
+                <div className="w-full md:w-3/4 lg:w-2/3 mx-auto">
+                    <div className="grid gap-2 md:grid-cols-[25%_75%] lg:gap-16 items-center">
+                        {/* NSF Logo Column */}
+                        <div className="flex justify-center">
+                            <img 
+                                src="/assets/logos/NSF.png" 
+                                alt="NSF Logo" 
+                                className="h-24 w-auto"
+                            />
+                        </div>
+                        
+                        {/* Text Content Column */}
+                        <div className="text-center md:text-left">
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                                Validated by NSF-Funded Research
+                            </h3>
+                            <p className="mt-4 max-w-2xl mx-auto text-lg text-[var(--color-text-primary)]">
+                                We conducted extensive interviews with educators, TAs, and students across institutions as part of our NSF Corps grant.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
 
+// SOLUTION SECTION COMPONENT
+const SolutionSection = () => (
+    <section className="bg-[var(--color-surface)] py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div className="text-center lg:text-left">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
+                        Meet <span className="text-[var(--color-primary)] text-6xl font-bold" style={{ fontFamily: 'dancing script'  }}>Encando</span>
+                        <span className="text-[var(--color-text-primary)]">.&nbsp;Your AI Teaching Partner.</span> 
+                    </h2>
+                    <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
+                        Encando is an integrated AI platform designed to augment—not replace—the human element of teaching. It learns from your unique course materials to become a specialized expert for your class.
+                    </p>
+                    <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
+                        Encando handles the logistics, provides instant academic support, and unlocks deep performance insights. It's the partner you need to scale exceptional education.
+                    </p>
+                </div>
+                <div className="mt-10 lg:mt-0">
+                    <img className="rounded-2xl shadow-2xl" src="https://placehold.co/600x400/1F2937/4A5568?text=ChaTA+Dashboard+UI" alt="ChaTA Platform Dashboard" />
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+
+// FEATURES SECTION COMPONENT
+const FeatureDetail = ({ title, children }) => (
+    <div className="mt-8">
+        <h4 className="text-xl font-bold text-white">{title}</h4>
+        <p className="mt-2 text-gray-400">{children}</p>
+    </div>
+);
+
+const FeaturesSection = () => (
+    <section id="features" className="bg-[var(--color-bg)] py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            {/* Part A: For Professors & Institutions */}
+            <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div className="text-center lg:text-left">
+                    <h3 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">Reclaim Your Time. Elevate Your Teaching.</h3>
+                    <p className="mt-4 text-lg text-[var(--color-text-secondary)]">Empower your faculty with tools that automate the mundane and amplify their impact.</p>
+                    <div className="mt-8 space-y-6">
+                        <FeatureDetail title="On-Demand, Course-Specific Answers">
+                            Eliminate repetitive queries. Our AI instantly resolves up to 80% of common student questions, trained exclusively on your syllabi, lecture notes, and textbooks. Give your faculty back their most valuable resource: time.
+                        </FeatureDetail>
+                        <FeatureDetail title="Actionable Insights into Student Progress">
+                            Move from guesswork to guidance. Get a real-time dashboard of student engagement and comprehension. Identify at-risk students before they fall behind and discover class-wide knowledge gaps before the exam.
+                        </FeatureDetail>
+                        <FeatureDetail title="Streamlined Course Administration">
+                            From AI-assisted exam creation to automated grading and one-click accreditation reporting (including ABET), ChaTA handles the administrative overhead so you can focus on impactful teaching and research.
+                        </FeatureDetail>
+                    </div>
+                </div>
+                <div className="mt-10 lg:mt-0 flex items-center justify-center">
+                    <img className="rounded-2xl shadow-2xl" src="https://placehold.co/600x600/1F2937/4A5568?text=Instructor+Analytics" alt="Instructor Analytics Dashboard" />
+                </div>
+            </div>
+
+            {/* Part B: For Students */}
+            <div className="mt-24 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div className="lg:order-2 text-center lg:text-left">
+                    <h3 className="text-3xl md:text-4xl font-extrabold text-white">Your Personal Guide to Academic Success.</h3>
+                    <p className="mt-4 text-lg text-gray-300">Give every student the personalized support they need to thrive.</p>
+                    <div className="mt-8 space-y-6">
+                        <FeatureDetail title="Instant, 24/7 Academic Support">
+                            Stuck on a concept at 2 AM? Get immediate, multilingual help whenever you need it, on any device. No more waiting for office hours to get unstuck and move forward.
+                        </FeatureDetail>
+                        <FeatureDetail title="Get Help You Can Actually Trust">
+                            Unlike generic AI, ChaTA provides answers that are 100% aligned with your specific course. It learns from your professor's materials, so you get reliable help that's relevant to your next exam.
+                        </FeatureDetail>
+                        <FeatureDetail title="Visualize Your Path to Mastery">
+                            Take control of your education. Understand your unique strengths and weaknesses with a personalized learning dashboard. Track your progress, review key concepts, and walk into every exam with confidence.
+                        </FeatureDetail>
+                    </div>
+                </div>
+                <div className="lg:order-1 mt-10 lg:mt-0 flex items-center justify-center">
+                    <img className="rounded-2xl shadow-2xl" src="https://placehold.co/600x600/1F2937/4A5568?text=Student+Dashboard" alt="Student Progress Dashboard" />
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+
+// SOCIAL PROOF SECTION COMPONENT
+const SocialProofSection = () => (
+    <section id="social-proof" className="bg-[var(--color-surface)] py-20 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
+            Building the Future of Education with Trusted Partners
+          </h2>
+          <p className="mt-4 max-w-3xl mx-auto text-lg text-[var(--color-text-secondary)]">
+            We're proud to collaborate with leading academic institutions and forward-thinking organizations to redefine the learning experience.
+          </p>
+        </div>
+  
+        <div className="mt-16">
+          {/* Trusted By Section */}
+          <div className="text-center">
+            <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">
+              Trusted By
+            </h3>
+            <div className="mt-6 flex justify-center items-center space-x-8 sm:space-x-12 opacity-80">
+              {/* Placeholder Logos for Universities - Replace with actual logos */}
+              {/* <span className="text-2xl font-semibold text-[var(--color-text-secondary)]">University One</span>
+              <span className="text-2xl font-semibold text-[var(--color-text-secondary)]">University Two</span> */}
+              <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
+              <img src="https://webassets.unt.edu/assets/branding/unt-stacked-logo.svg" alt="UNT Logo" className="h-24 w-auto" />
+            </div>
+          </div>
+  
+          {/* Backed By Section */}
+          <div className="mt-16 text-center">
+             <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">
+              Backed By
+            </h3>
+            <div className="mt-6 flex justify-center items-center flex-wrap gap-x-12 gap-y-6 filter grayscale opacity-60">
+               {/* Placeholder Logos for Backers - Replace with actual logos */}
+              {/* <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Investor A</span>
+              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Accelerator B</span>
+              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">VC Firm C</span>
+              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Foundation D</span> */}
+              <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
+              <img src="/assets/logos/TAMU-Innovation.avif" alt="TAMU Innovation Logo" className="h-24 w-auto" />
+              <img src="/assets/logos/NSF.png" alt="NSF Logo" className="h-24 w-auto" />
+              <img src="/assets/logos/NSF-I-Corps.jpg" alt="NSF I-Corps Logo" className="h-24 w-auto" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+
+// CALL TO ACTION (CTA) SECTION COMPONENT
+const CtaSection = () => {
+    return (
+        <section id="cta" className="bg-[var(--color-bg)] py-16 sm:py-20">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                    {/* Left side - Text content */}
+                    <div className="text-center lg:text-left">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
+                            Ready to Transform Your Learning Environment?
+                        </h2>
+                        <p className="mt-4 text-lg leading-6 text-[var(--color-text-secondary)]">
+                            See how Encando's AI can empower your institution, engage your students, and unlock limitless potential. Schedule a brief, personalized demo with our team today.
+                        </p>
+                        <div className="mt-8 lg:hidden">
+                            <DemoRequestForm />
+                        </div>
+                    </div>
+
+                    {/* Right side - Demo form (desktop) */}
+                    <div className="hidden lg:block mt-10 lg:mt-0">
+                        <DemoRequestForm />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
+const Company = () => {
     return (
         <>
             <Header />
 
-            {/* Hero Section */}
-            <section className="hero-section">
-                <video autoPlay loop muted playsInline className="hero-video-background">
-                    <source src={`${process.env.PUBLIC_URL}/assets/homepage/HomepageBackground.mp4`} type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
-                <div className="hero-content-overlay">
-                    <div className="hero-text-container">
-                        <h2 className="hero-title-video">Integrated AI-powered platform that supports personalized education at scale.</h2>
-                    </div>
-                </div>
-            </section>
-
-            {/* Quote Section */}
-            <section className="quote-section">
-                <h3 className="quote-title">Empowering every learner's journey with an AI-driven platform that personalizes education at scale, unlocking limitless potential</h3>
-            </section>
-
-            {/* What we offer Section */}
-            <section className="what-we-offer-section">
-                <h2 className="section-heading">What we offer</h2>
-                <div className="offer-content-container">
-                    <div className="offer-text-content">
-                        <h3 className="offer-subheading chata-heading">ChaTA<br />Features</h3>
-                        <p className="offer-description">
-                            Discover a comprehensive suite of tools designed to enhance learning, streamline education, and empower both students and educators.
-                        </p>
-                    </div>
-                    <div className="offer-slider-container">
-                        <div className="arrow-cards-grid">
-                            {chaTAFeatures.map((feature, idx) => (
-                                <div 
-                                    key={feature.id} 
-                                    ref={arrowCardRefs[idx]}
-                                    className={`arrow-card-item ${arrowCardVisible[idx] ? 'visible' : ''}`}
-                                >
-                                    <ArrowCard 
-                                        text={feature.title} 
-                                        backgroundColor={arrowCardColors[idx]}
-                                        href="#"
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Provides Section */}
-            <section className="provides-section">
-                <div className="offer-content-container">
-                    <div className="offer-text-content">
-                        <h3 className="offer-subheading" style={{ color: '#000' }}>Encando AI<br />Provides</h3>
-                    </div>
-                    <div className="provides-features-hub">
-                        {providesFeatureCards.map((card, idx) => (
-                            <div key={card.title} className={`hub-card-container hub-card-${idx}`}>
-                                <div
-                                    ref={cardRefs[idx]}
-                                    className={`provides-feature-card ${idx < 2 ? 'from-left' : 'from-right'}${cardVisible[idx] ? ' visible' : ''}`}
-                                >
-                                    <img src={card.image} alt={card.title} className="feature-card-image" />
-                                    <h4 className="feature-card-title">{card.title}</h4>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Future Section */}
-            <section className="future-section">
-                <div className="offer-content-container">
-                    <div className="offer-text-content">
-                        <h3 className="offer-subheading">Future<br />Features</h3>
-                    </div>
-                    <div className="provides-features-hub">
-                        {futureFeatureCards.map((card, idx) => (
-                            <div key={card.title} className={`hub-card-container hub-card-${idx}`}>
-                                <div
-                                    ref={futureCardRefs[idx]}
-                                    className={`provides-feature-card ${idx < 2 ? 'from-left' : 'from-right'}${futureCardVisible[idx] ? ' visible' : ''}`}
-                                >
-                                    <img src={card.image} alt={card.title} className="feature-card-image" />
-                                    <h4 className="feature-card-title" style={{ color: '#222' }}>{card.title}</h4>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="backedby-section">
-                <h2 className="section-heading" style={{ color: '#1c1c1e' }}>Backed By</h2>
-                <div className="backedby-logos-row">
-                    {backedByLogos.map((logo, idx) => (
-                        <div className="backedby-logo-col" key={idx}>
-                            <img src={logo.src} alt={logo.alt} className="backedby-logo-img" />
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* Investment Section */}
-            <section className="investment-section">
-                <div className="investment-content">
-                    <h2 className="investment-title">We're Seeking Angel Investment</h2>
-                    <p className="investment-subtitle">SAFE Round is Open</p>
-                </div>
-            </section>
-
-            {/* Encando AI Dots Section */}
-            <section className="encandoai-section">
-                <img src={require('../icons/company-name.svg').default} alt="Encando AI" className="encandoai-heading" />
-            </section>
-
+            <main>
+                <HeroSection />
+                <ProblemSection />
+                <SolutionSection />
+                <FeaturesSection />
+                <SocialProofSection />
+                <CtaSection />
+            </main>
             <Footer />
         </>
     );
-}
+};
 
 export default Company;

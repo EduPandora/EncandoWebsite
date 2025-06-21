@@ -41,16 +41,18 @@
 }
 
 .app-container {
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
     background: #f8f9fa;
     color: #222;
 }
 
 .app-header-main {
-    background: #1c1c1e;
-    border-bottom: 1px solid #333;
-    padding: 1.5rem 0;
-    position: relative;
+    background: transparent;
+    /* border-bottom: 1px solid #333; */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-content {
@@ -72,9 +74,10 @@
 /* New Logo Styles */
 .header-logo-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-decoration: none;
+    gap: 0.5rem;
 }
 
 .header-logo-icon {
@@ -86,7 +89,7 @@
 .header-logo-text {
     font-size: 0.8rem;
     font-weight: bold;
-    color: #fff;
+    color: black;
 }
 
 /* Hamburger Menu Styles */
@@ -174,7 +177,7 @@
 
 .nav-button {
     background: transparent;
-    color: #fff;
+    color: black;
     border: none;
     padding: 0.6rem 1.2rem;
     cursor: pointer;

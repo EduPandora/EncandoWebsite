@@ -3,7 +3,7 @@
 }
 
 .product-hero-section {
-    background-color: #607df9;
+    background-color: #f9fafb;
     padding: 2rem;
 }
 
@@ -22,16 +22,16 @@
 }
 
 .product-title {
-    font-size: 3rem; /* Large font size for the title */
+    font-size: 60px; /* Large font size for the title */
     font-weight: 700;
-    color: #fff; /* Dark color for title */
+    color: #333333; /* Dark color for title */
     margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .product-description {
     font-size: 1.15rem; /* Slightly smaller font for description */
-    color: #fff;
+    color: #333333;
     line-height: 1.6;
     margin-bottom: 0; /* Ensure no default bottom margin interferes */
 }

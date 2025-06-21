@@ -18,7 +18,7 @@ const Header = () => {
     };
 
     return (
-        <header className="app-header-main">
+        <header className="p-4 bg-[#f9fafb] backdrop-blur-xl sticky top-0  z-50">
             <div className="header-content">
                 <Link to="/" className="header-logo-container">
                     <img src={`${process.env.PUBLIC_URL}/assets/icons/icon-color.png`} alt="Encando AI Logo" className="header-logo-icon" />
@@ -47,6 +47,9 @@ const Header = () => {
                         <Link to="/team" className="nav-button" onClick={closeMobileMenu}>
                             Team
                         </Link>
+                        <Link to="/investors" className="nav-button" onClick={closeMobileMenu}>
+                            For Investors
+                        </Link>
                         <a href="https://join.slack.com/t/encando/shared_invite/zt-362lnbhcm-UFwOVxwsDbj27SNOPpUBJg" target="_blank" rel="noopener noreferrer" className="nav-button nav-button-with-icon" onClick={closeMobileMenu}>
                             <svg className="nav-icon slack-icon" width="20" height="20" viewBox="0 0 24 24">
                                 <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.528 2.528 0 0 1 2.522-2.52h2.52v2.52z" fill="#E01E5A"/>
@@ -60,9 +63,12 @@ const Header = () => {
                             </svg>
                             Join Us on Slack
                         </a>
-                        <button className="nav-button-primary" onClick={handleContactUsClick}>
+                        {/* <button className="nav-button-primary" onClick={handleContactUsClick}>
                             Contact Us
-                        </button>
+                        </button> */}
+                        <a href="#cta" onClick={handleContactUsClick} className="w-full sm:w-auto inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Contact Us
+                        </a>
                         
                         {/* LinkedIn Icon */}
                         <a href="https://www.linkedin.com/company/encando-ai/" target="_blank" rel="noopener noreferrer" className="nav-icon-link" onClick={closeMobileMenu}>

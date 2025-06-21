@@ -12,9 +12,11 @@ function Product() {
                 <section className="product-hero-section">
                     <div className="product-hero-container">
                         <div className="product-text-content">
-                            <h1 className="product-title">Enjoy the Journey of Learning with ChaTA</h1>
+                            <h1 className="product-title">                            
+                                Enjoy the Journey of Learning with <span style={{ fontFamily: "Dancing Script", fontSize: "1.2em", color: "#3B82F6" }}>Encando</span>
+                            </h1>
                             <p className="product-description">
-                                ChaTA is a platform for students to learn and grow. Help students and faculty interact efficiently and effectively. <br /> Try it !
+                                Encando is a platform for students to learn and grow. Help students and faculty interact efficiently and effectively. <br /> Try it!
                             </p>
                             <TryMe style={{ marginTop: '20px' }}/>
                         </div>
