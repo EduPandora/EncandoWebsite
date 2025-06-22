@@ -6,7 +6,7 @@ import TryMe from '../Components/Elements/TryMe';
 
 function Product() {
     return (
-        <div className="app-container">
+        <>
             <Header />
             <main className="product-main-content">
                 <section className="product-hero-section">
@@ -42,9 +42,43 @@ function Product() {
                         </div>
                     </div>
                 </section>
+
+                <section className="product-pricing-section">
+                    <div className="product-pricing-container">
+                        <h2 className="product-pricing-title">Pricing</h2>
+                        <div className="pricing-cards flex flex-row gap-4">
+                            <div className="pricing-card h-auto">
+                                <h3 className="pricing-card-title">For Students</h3>
+                                <div className="pricing-amount">
+                                    <span className="text-5xl font-bold text-[var(--color-secondary-light)]">FREE</span>
+                                </div>
+                                <p className="pricing-description">
+                                    Complete access to all learning features
+                                </p>
+                            </div>
+                            
+                            <div className="pricing-card">
+                                <h3 className="pricing-card-title">For Instructors</h3>
+                                <div className="pricing-amount">
+                                    <span className="text-5xl font-bold text-[var(--color-text-primary)]">$100</span>
+                                    <span className="price-period">one-time</span>
+                                </div>
+                                <div className="limited-offer">
+                                    <span className="offer-badge">Limited Time Offer!</span>
+                                    <p className="offer-text">
+                                        <>Get <span className="text-3xl font-bold">$95</span> back</> when you submit your feedback
+                                    </p>
+                                </div>
+                                <p className="pricing-description">
+                                    Full access to instructor tools and analytics
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </main>
             <Footer />
-        </div>
+        </>
     );
 }
 

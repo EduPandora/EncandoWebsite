@@ -4,6 +4,7 @@ import Product from './Pages/Product';
 import Company from './Pages/Company';
 import Team from './Pages/Team';
 import NotFoundPage from './Pages/NotFoundPage';
+import InvestorsPage from './Pages/Investors';
 import './Styles/App.css';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/" element={<Company />} />
                 <Route path="/product" element={<Product />} />
                 <Route path="/team" element={<Team />} />
+                <Route path="/investors" element={<InvestorsPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Router>

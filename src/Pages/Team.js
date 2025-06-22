@@ -65,7 +65,7 @@ const teamMembers = [
 
 function Team() {
     return (
-        <div className="app-container">
+        <>
             <Header />
             <main className="team-main-content">
                 <section className="team-hero-section">
@@ -95,7 +95,7 @@ function Team() {
                 </section>
             </main>
             <Footer />
-        </div>
+        </>
     );
 }
 

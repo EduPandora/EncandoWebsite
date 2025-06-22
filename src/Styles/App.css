@@ -86,11 +86,11 @@
     margin-bottom: 4px;
 }
 
-.header-logo-text {
+/* .header-logo-text {
     font-size: 0.8rem;
     font-weight: bold;
     color: black;
-}
+} */
 
 /* Hamburger Menu Styles */
 .hamburger-menu {
@@ -109,7 +109,7 @@
 .hamburger-line {
     width: 25px;
     height: 3px;
-    background-color: #fff;
+    background-color: #000;
     margin: 3px 0;
     transition: 0.3s;
     transform-origin: center;
@@ -159,8 +159,8 @@
 }
 
 .nav-icon-link:hover {
-    background-color: #333;
-    color: #0077b5;
+    background-color: var(--color-primary);
+    color: #fff;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -190,8 +190,9 @@
 }
 
 .nav-button:hover {
-    background-color: #333;
+    background-color: var(--color-primary);
     color: #fff;
+    font-weight: 400;
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
