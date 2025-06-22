@@ -4,7 +4,7 @@ import '../../Styles/Elements.css';
 function TryMe() {
     return (
         <div className="try-me-wrapper">
-            <a className="try-me-cta" href="https://www.encando.com">
+            <a className="try-me-cta" href="https://www.encando.com/login">
                 <span>Try Now</span>
                 <span>
                     <svg width="66px" height="25px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

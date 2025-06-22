@@ -5,6 +5,12 @@ import '../Styles/Product.css'; // Import Product.css
 import TryMe from '../Components/Elements/TryMe';
 
 function Product() {
+    const scrollToSection = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     return (
         <>
             <Header />
@@ -24,6 +30,9 @@ function Product() {
                             <img src={`${process.env.PUBLIC_URL}/assets/images/banner-img.png`} alt="ChaTA Learning Journey" className="product-hero-image" />
                         </div>
                     </div>
+                    <a href="#pricing" onClick={(e) => { e.preventDefault(); scrollToSection('pricing'); }} className="w-full pt-12 justify-center flex text-[var(--color-primary)] hover:translate-y-1 text-md sm:text-xl transition-all duration-300 transform font-semibold">
+                        See Pricing &darr;
+                    </a>
                 </section>
 
                 <section className="product-introduction-section" id="demo">
