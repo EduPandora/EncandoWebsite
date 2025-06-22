@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import ArrowCard from '../Components/Elements/ArrowCard';
 import DemoRequestForm from '../Components/Elements/DemoRequestForm';
 import ProblemCard from '../Components/Elements/ProblemCard';
 import '../Styles/Company.css';
@@ -56,6 +55,7 @@ const TeacherIcon = ({ className }) => (
 
 // HERO SECTION COMPONENT
 const HeroSection = () => {
+    // Simple scroll function since we're already on the home page with all sections
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
@@ -63,7 +63,7 @@ const HeroSection = () => {
         }
     };
     return (
-        <section className="bg-[#f9fafb] text-black py-40 md:py-40">
+        <section className="bg-[#f9fafb] text-black py-20 md:py-40 lg:py-60">
             <div className="absolute inset-0 z-0 opacity-10 hidden md:block">
                 <BookIcon className="animate-float absolute top-[20%] left-[5%] h-16 w-16 text-[var(--color-primary)]" />
                 <GraduationCapIcon className="animate-float absolute top-[15%] right-[10%] h-20 w-20 text-[var(--color-primary)]" />
@@ -108,7 +108,7 @@ const ProblemSection = () => (
                 </p>
             </div>
             <div className="mt-16 grid gap-8 md:grid-cols-3">
-                <ProblemCard icon={<img src="/assets/images/problem/instructor.png" alt="Tired Instructor" className="w-full " />} title="For Instructors">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/instructor.png`} alt="Tired Instructor" className="w-full " />} title="For Instructors">
                     {/* Faculty are burning out. They're buried under a mountain of repetitive student questions, manual grading, and administrative tasks, leaving little time for the high-impact teaching and mentorship that truly matter. */}
                     <p>Faculty burnout is real:</p>
                     <ul className="list-disc list-inside">
@@ -118,7 +118,7 @@ const ProblemSection = () => (
                         <li>Little time left for mentorship, course innovation, or research</li>
                     </ul>
                 </ProblemCard>
-                <ProblemCard icon={<img src="/assets/images/problem/student.png" alt="Tired Student" className="w-full" />} title="For Students">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/student.png`} alt="Tired Student" className="w-full" />} title="For Students">
                     {/* Learners feel anonymous. In large classes, personalized attention is rare. They struggle to get timely help, leading to disengagement, frustration, and a greater risk of falling behind. */}
                     <p>Students feel unseen:</p>
                     {/* <p>In large classes, they often:</p> */}
@@ -128,7 +128,7 @@ const ProblemSection = () => (
                         <li>Disengagement, losing motivation and confidence</li>
                     </ul>
                 </ProblemCard>
-                <ProblemCard icon={<img src="/assets/images/problem/university.png" alt="Tired Institution" className="w-full" />} title="For Institutions">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/university.png`} alt="Tired Institution" className="w-full" />} title="For Institutions">
                     {/* Scaling quality education is a constant challenge. Universities are grappling with how to improve student retention, ensure academic integrity, and deliver a world-class experience without exponentially increasing costs. */}
                     <p>Scaling quality education is hard:</p>
                     <ul className="list-disc list-inside">
@@ -144,7 +144,7 @@ const ProblemSection = () => (
                         {/* NSF Logo Column */}
                         <div className="flex justify-center">
                             <img
-                                src="/assets/logos/NSF.png"
+                                src={`${process.env.PUBLIC_URL}/assets/logos/NSF.png`}
                                 alt="NSF Logo"
                                 className="h-24 w-auto"
                             />
@@ -173,7 +173,7 @@ const SolutionSection = () => (
             <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
                 <div className="text-center lg:text-left">
                     <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
-                        Meet <span className="text-[var(--color-primary-light)] text-6xl font-extrabold" style={{ fontFamily: 'dancing script' }}>Encando</span>.
+                        Meet <span className="text-[var(--color-primary-light)] text-6xl font-extrabold" style={{ fontFamily: 'dancing script' }}>Encando</span>
                         <p className="text-[var(--color-text-primary)]">Your AI Teaching Partner.</p>
                     </h2>
                     <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
@@ -183,7 +183,7 @@ const SolutionSection = () => (
                         Encando handles the logistics, provides instant academic support, and unlocks deep performance insights. It's the partner you need to scale exceptional education.
                     </p>
                 </div>
-                <div className="mt-10 lg:mt-0 text-4xl md:text-[48px]/[56px] font-bold tracking-tight">
+                <div className="m-10 sm:m-20 lg:m-0 lg:mt-0 text-4xl md:text-[48px]/[56px] font-bold tracking-tight">
                     <p>Powered by AI.</p>
                     <p className="text-[var(--color-primary-light)]">Monitored by Instructors.</p>
                     <p>Favored by Students.</p>
@@ -198,42 +198,48 @@ const SolutionSection = () => (
 const instructorFeatures = [
     {
         id: 'if1',
-        title: 'On-Demand, Course-Specific Answers',
-        description: 'Eliminate repetitive queries. Our AI instantly resolves up to 80% of common student questions, trained exclusively on your syllabi, lecture notes, and textbooks. Give your faculty back their most valuable resource: time.',
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=AI+Q%26A',
+        title: 'Easy Course Building',
+        description: 'Effortlessly create comprehensive courses in minutes. Simply upload your syllabus, lecture notes, textbooks, and videos—Encando will thoroughly understand your materials.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Course Building.gif`,
     },
     {
         id: 'if2',
-        title: 'Actionable Insights into Student Progress',
-        description: 'Move from guesswork to guidance. Get a real-time dashboard of student engagement and comprehension. Identify at-risk students before they fall behind and discover class-wide knowledge gaps before the exam.',
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=Analytics',
+        title: '24/7 Teaching Assistant',
+        description: 'Provide instant, reliable answers to your students’ questions any time of day. Encando’s AI-powered assistant supports continuous learning beyond the classroom.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/ChaTA.gif`,
     },
     {
         id: 'if3',
-        title: 'Streamlined Course Administration',
-        description: 'From AI-assisted exam creation to automated grading and one-click accreditation reporting (including ABET), ChaTA handles the administrative overhead so you can focus on impactful teaching and research.',
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=Auto-Grading',
+        title: 'Automatic Student Assessment Generation',
+        description: 'Quickly generate custom quizzes and exercises tailored to each topic, automatically assessing your students’ understanding with precision and efficiency.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Exercise Generation.gif`,
+    },
+    {
+        id: 'if4',
+        title: 'Class-wide Performance Analytics',
+        description: 'Get clear, insightful analytics at a glance. Instantly identify class trends or deep-dive into individual student performance, empowering informed teaching decisions.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Class Report.gif`,
     },
 ];
 
 const studentFeatures = [
     {
         id: 'sf1',
-        title: 'Instant, 24/7 Academic Support',
-        description: 'Stuck on a concept at 2 AM? Get immediate, multilingual help whenever you need it, on any device. No more waiting for office hours to get unstuck and move forward.',
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=24/7+Support',
+        title: '24/7 Assignment Help',
+        description: 'Gain clarity on assignments whenever you need. Encando’s AI chatbot provides guidance and helps you understand problems deeply without simply revealing answers.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Assignment Helper.gif`,
     },
     {
         id: 'sf2',
-        title: 'Get Help You Can Actually Trust',
-        description: "Unlike generic AI, ChaTA provides answers that are 100% aligned with your specific course. It learns from your professor's materials, so you get reliable help that's relevant to your next exam.",
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=Trusted+AI',
+        title: 'Project Coach & Grading',
+        description: 'Receive real-time coaching and meaningful feedback on your projects, enabling you to improve your skills and achieve higher scores.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Project Coach.gif`,
     },
     {
         id: 'sf3',
-        title: 'Visualize Your Path to Mastery',
-        description: 'Take control of your education. Understand your unique strengths and weaknesses with a personalized learning dashboard. Track your progress, review key concepts, and walk into every exam with confidence.',
-        imageUrl: 'https://placehold.co/600x600/1F2937/4A5568?text=Student+Dashboard',
+        title: 'Self-learning Tools & Social Connections',
+        description: 'Take charge of your learning with personalized insights. Identify your strengths, tackle weaknesses effectively, track your academic growth, and connect with peers who share your academic interests.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Study Buddy.gif`,
     },
 ];
 
@@ -264,8 +270,8 @@ const FeatureSet = ({ title, features, _for }) => {
                         </div>
                     ))}
                 </div>
-                <div className="col-span-6 sticky top-24">
-                    <div className="relative aspect-square bg-[var(--color-surface)] rounded-xl shadow-2xl overflow-hidden">
+                <div className="col-span-6 sticky top-24 h-full">
+                    <div className="relative aspect-video bg-[var(--color-surface)] rounded-xl shadow-2xl overflow-hidden">
                         {features.map(feature => (
                             <img
                                 key={feature.id}
@@ -282,7 +288,7 @@ const FeatureSet = ({ title, features, _for }) => {
             <div className="lg:hidden mt-8 space-y-6">
                 {features.map((feature, index) => (
                     <div key={feature.id} className="bg-[var(--color-surface)] rounded-lg shadow-lg overflow-hidden">
-                        <img src={feature.imageUrl} alt={feature.title} className="w-full h-48 object-cover" />
+                        <img src={feature.imageUrl} alt={feature.title} className="p-6 w-full h-auto object-contain" />
                         <div className="p-6">
                             <h4 className="font-bold text-lg text-[var(--color-text-primary)]">{feature.title}</h4>
                             <p className="mt-2 text-[var(--color-text-secondary)]">{feature.description}</p>

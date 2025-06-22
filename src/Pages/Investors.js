@@ -9,10 +9,10 @@ const TeamIcon = ({ className }) => (<svg className={className} xmlns="http://ww
 const CheckCircleIcon = ({ className }) => (<svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>);
 
 const InvestorHero = () => (
-  <section className="bg-[var(--color-bg)] text-[var(--color-text-primary)] pt-32 pb-20 md:pt-40 md:pb-28 text-center">
+  <section id="investors" className="bg-[var(--color-bg)] text-[var(--color-text-primary)] pt-32 pb-20 md:pt-40 md:pb-28 text-center">
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-        Empowering the Future of Higher Ed with <span className="text-[var(--color-primary)]">Patented AI Technology</span>
+        Empowering the Future of Higher Ed with <span className="text-[var(--color-primary-light)]">Patented AI Technology</span>
       </h1>
       <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--color-text-primary)]">
         Encando.AI is backed by 4 issued patents. We are currently seeking visionary angel investors to join our mission.
@@ -124,7 +124,7 @@ const InvestorCta = () => (
       <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">Ready to join us at the ground floor?</h2>
       <p className="mt-4 text-lg leading-6 text-[var(--color-text-secondary)]">Request our investor pack, meet our founders, or get a personal demo.</p>
       <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-        <a href="#" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors">Request Investor Deck</a>
+        <a href="mailto:info@encando.ai" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors">Request Investor Deck</a>
         {/* <a href="#" className="inline-block bg-[var(--color-primary)]/50 text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary)]/80 transition-colors">Book a Call</a> */}
       </div>
     </div>

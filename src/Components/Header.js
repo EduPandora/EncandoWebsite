@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigateAndScroll } from '../utils/navigation';
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigateAndScrollToSection = useNavigateAndScroll();
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -15,7 +17,7 @@ const Header = () => {
     const handleContactUsClick = (e) => {
         e.preventDefault();
         closeMobileMenu();
-        document.getElementById('footer')?.scrollIntoView({ behavior: 'smooth' });
+        navigateAndScrollToSection('cta');
     };
 
     return (
@@ -23,7 +25,7 @@ const Header = () => {
             <div className="header-content">
                 <Link to="/" className="header-logo-container">
                     <img src={`${process.env.PUBLIC_URL}/assets/icons/icon-color.png`} alt="Encando AI Logo" className="header-logo-icon" />
-                    <span className="font-semibold text-xl text-[var(--color-text-primary)]">Encando AI</span>
+                    <span className="font-bold text-xl text-[var(--color-text-primary)]">Encando AI</span>
                 </Link>
                 
                 {/* Hamburger Icon for Mobile */}

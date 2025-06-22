@@ -257,6 +257,7 @@
     .nav-buttons-container.mobile-open {
         transform: translateY(0);
         opacity: 1;
+        background: var(--color-bg);
         visibility: visible;
         max-height: 500px;
     }

@@ -9,7 +9,7 @@ function Product() {
         <>
             <Header />
             <main className="product-main-content">
-                <section className="product-hero-section">
+                <section className="product-hero-section" id="product">
                     <div className="product-hero-container">
                         <div className="product-text-content">
                             <h1 className="product-title">                            
@@ -26,7 +26,7 @@ function Product() {
                     </div>
                 </section>
 
-                <section className="product-introduction-section">
+                <section className="product-introduction-section" id="demo">
                     <div className="product-introduction-container">
                         <h2 className="product-introduction-title">Introduction</h2>
                         <div className="video-frame-container">
@@ -43,12 +43,12 @@ function Product() {
                     </div>
                 </section>
 
-                <section className="product-pricing-section">
+                <section className="product-pricing-section" id="pricing">
                     <div className="product-pricing-container">
                         <h2 className="product-pricing-title">Pricing</h2>
                         <div className="pricing-cards flex flex-row gap-4">
                             <div className="pricing-card h-auto">
-                                <h3 className="pricing-card-title">For Students</h3>
+                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">For Students</h3>
                                 <div className="pricing-amount">
                                     <span className="text-5xl font-bold text-[var(--color-secondary-light)]">FREE</span>
                                 </div>
@@ -58,7 +58,8 @@ function Product() {
                             </div>
                             
                             <div className="pricing-card">
-                                <h3 className="pricing-card-title">For Instructors</h3>
+                                {/* <h3 className="pricing-card-title">For Instructors</h3> */}
+                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">For Instructors</h3>
                                 <div className="pricing-amount">
                                     <span className="text-5xl font-bold text-[var(--color-text-primary)]">$100</span>
                                     <span className="price-period">one-time</span>

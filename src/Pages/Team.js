@@ -68,7 +68,7 @@ function Team() {
         <>
             <Header />
             <main className="team-main-content">
-                <section className="team-hero-section">
+                <section className="team-hero-section" id="team">
                     <h1 className="team-main-heading">Meet Our Team</h1>
                     <p className="team-subheading">
                         <span>Passionate<span className="blue-period">.</span></span>

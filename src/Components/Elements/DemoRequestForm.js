@@ -172,7 +172,7 @@ const DemoRequestForm = () => {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                         <div>
                             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                                 Full Name *
@@ -207,7 +207,7 @@ const DemoRequestForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1 text-left">
                             Company/Institution *
                         </label>
                         <input
@@ -223,7 +223,7 @@ const DemoRequestForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 text-left">
                             Phone Number
                         </label>
                         <input
