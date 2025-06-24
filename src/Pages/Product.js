@@ -16,7 +16,7 @@ function Product() {
                                 Enjoy the Journey of Learning with <span style={{ fontFamily: "Dancing Script", fontSize: "1.2em", color: "#3B82F6" }}>Encando</span>
                             </h1>
                             <p className="product-description">
-                                Encando is a platform for students to learn and grow. Help students and faculty interact efficiently and effectively. <br /> Try it!
+                                Encando is a platform for students to learn and grow. Help students and faculty interact efficiently and effectively. <br />
                             </p>
                             <TryMe style={{ marginTop: '20px' }}/>
                         </div>
@@ -48,7 +48,7 @@ function Product() {
                         <h2 className="product-pricing-title">Pricing</h2>
                         <div className="pricing-cards flex flex-row gap-4">
                             <div className="pricing-card h-auto">
-                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">For Students</h3>
+                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-primary)] tracking-wider uppercase">For Students</h3>
                                 <div className="pricing-amount">
                                     <span className="text-5xl font-bold text-[var(--color-secondary-light)]">FREE</span>
                                 </div>
@@ -59,7 +59,7 @@ function Product() {
                             
                             <div className="pricing-card">
                                 {/* <h3 className="pricing-card-title">For Instructors</h3> */}
-                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">For Instructors</h3>
+                                <h3 className="text-sm mb-4 font-semibold text-[var(--color-text-primary)] tracking-wider uppercase">For Instructors</h3>
                                 <div className="pricing-amount">
                                     <span className="text-5xl font-bold text-[var(--color-text-primary)]">$100</span>
                                     <span className="price-period">one-time</span>

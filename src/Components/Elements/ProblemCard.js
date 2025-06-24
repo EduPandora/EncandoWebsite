@@ -6,7 +6,7 @@ const ProblemCard = ({ icon, title, children, invertBg = false }) => (
             {icon}
         </div>
             <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4">{title}</h3>
-            <p className={`text-base ${invertBg ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}`}>
+            <p className={`text-lg text-[var(--color-text-primary)]`}>
                 {children}
             </p>
         

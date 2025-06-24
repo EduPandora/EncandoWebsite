@@ -40,19 +40,6 @@ const StudentsIcon = ({ className }) => (
     </svg>
 );
 
-const TeacherIcon = ({ className }) => (
-    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 22v-4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v4" />
-        <path d="M18 10a2 2 0 1 0-4 0" />
-        <path d="M6 10a2 2 0 1 0-4 0" />
-        <path d="M18 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2h-1" />
-        <path d="M4 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2H4" />
-        <path d="M12 10a2 2 0 1 0-4 0" />
-        <path d="M12 10h2c.6 0 1 .4 1 1v1a2 2 0 0 1-2 2h-1" />
-        <path d="M6 6.5V6c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2v.5" />
-    </svg>
-);
-
 // HERO SECTION COMPONENT
 const HeroSection = () => {
     // Simple scroll function since we're already on the home page with all sections
@@ -75,13 +62,13 @@ const HeroSection = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-1">
                 <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
                     <span className="block">AI-Powered </span>
-                    <span className="block text-red-900">Higher Education Platform</span>
+                    <span className="block text-[var(--color-primary-light)]">Higher Education Platform</span>
                 </h1>
-                <p className="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-[var(--color-text-primary)]">
+                <p className="mt-6 max-w-4xl mx-auto text-lg md:text-2xl text-[var(--color-text-primary)]">
                     {/* Encando's AI platform, ChaTA, empowers educators and engages students with deeply personalized learning experiences—delivered anytime, anywhere. Free your faculty from repetitive tasks and give every student the support they need to succeed. */}
                     At Encando, we harness advanced AI to transform higher education through deeply personalized learning experiences—delivered at scale, anytime, anywhere.
                 </p>
-                <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 md:text-xl">
                     <a href="#cta" onClick={(e) => { e.preventDefault(); scrollToSection('cta'); }} className="w-full sm:w-auto inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 transform hover:scale-105 shadow-lg">
                         Request a Demo
                     </a>
@@ -99,7 +86,7 @@ const HeroSection = () => {
 
 // PROBLEM SECTION COMPONENT
 const ProblemSection = () => (
-    <section id="problem" className="bg-[var(--color-bg)] py-20 sm:py-24">
+    <section id="problem" className="bg-[var(--color-surface)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
                 <h2 className="text-3xl md:text-4xl font-extrabold text-black">The Old Way Isn't Working.</h2>
@@ -108,30 +95,30 @@ const ProblemSection = () => (
                 </p>
             </div>
             <div className="mt-16 grid gap-8 md:grid-cols-3">
-                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/instructor.png`} alt="Tired Instructor" className="w-full " />} title="For Instructors">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/instructor.png`} alt="Tired Instructor" className="w-full " />} title="Instructors">
                     {/* Faculty are burning out. They're buried under a mountain of repetitive student questions, manual grading, and administrative tasks, leaving little time for the high-impact teaching and mentorship that truly matter. */}
                     <p>Faculty burnout is real:</p>
-                    <ul className="list-disc list-inside">
+                    <ul className="list-disc list-inside font-semibold">
                         <li>Routine student questions</li>
                         <li>Manual grading & regrading</li>
                         <li>LMS and email overload</li>
                         <li>Little time left for mentorship, course innovation, or research</li>
                     </ul>
                 </ProblemCard>
-                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/student.png`} alt="Tired Student" className="w-full" />} title="For Students">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/student.png`} alt="Tired Student" className="w-full" />} title="Students">
                     {/* Learners feel anonymous. In large classes, personalized attention is rare. They struggle to get timely help, leading to disengagement, frustration, and a greater risk of falling behind. */}
                     <p>Students feel unseen:</p>
                     {/* <p>In large classes, they often:</p> */}
-                    <ul className="list-disc list-inside">
+                    <ul className="list-disc list-inside font-semibold">
                         <li>Waiting too long for answers</li>
                         <li>Not getting personalized feedback</li>
                         <li>Disengagement, losing motivation and confidence</li>
                     </ul>
                 </ProblemCard>
-                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/university.png`} alt="Tired Institution" className="w-full" />} title="For Institutions">
+                <ProblemCard icon={<img src={`${process.env.PUBLIC_URL}/assets/images/problem/university.png`} alt="Tired Institution" className="w-full" />} title="Institutions">
                     {/* Scaling quality education is a constant challenge. Universities are grappling with how to improve student retention, ensure academic integrity, and deliver a world-class experience without exponentially increasing costs. */}
                     <p>Scaling quality education is hard:</p>
-                    <ul className="list-disc list-inside">
+                    <ul className="list-disc list-inside font-semibold">
                         <li>Maintain academic standards and integrity</li>
                         <li>Improve retention and engagement</li>
                         <li>Control costs without adding staff</li>
@@ -168,7 +155,7 @@ const ProblemSection = () => (
 
 // SOLUTION SECTION COMPONENT
 const SolutionSection = () => (
-    <section className="bg-[var(--color-surface)] py-20 sm:py-24">
+    <section className="bg-[var(--color-bg)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
                 <div className="text-center lg:text-left">
@@ -176,11 +163,13 @@ const SolutionSection = () => (
                         Meet <span className="text-[var(--color-primary-light)] text-6xl font-extrabold" style={{ fontFamily: 'dancing script' }}>Encando</span>
                         <p className="text-[var(--color-text-primary)]">Your AI Teaching Partner.</p>
                     </h2>
-                    <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
-                        Encando is an integrated AI platform designed to augment—not replace—the human element of teaching. It learns from your unique course materials to become a specialized expert for your class.
+                    <p className="mt-4 text-lg text-[var(--color-text-primary)]">
+                        {/* Encando is an integrated AI platform designed to augment—not replace—the human element of teaching. It learns from your unique course materials to become a specialized expert for your class. */}
+                        Encando is an all-in-one integrated AI platform, designed to reduce educators' teaching load and administrative burden, while delivering personalized and engaging learning experiences for students -- all within a manageable budget for institutions.
                     </p>
-                    <p className="mt-4 text-lg text-[var(--color-text-secondary)]">
-                        Encando handles the logistics, provides instant academic support, and unlocks deep performance insights. It's the partner you need to scale exceptional education.
+                    <p className="mt-4 text-lg text-[var(--color-text-primary)]">
+                        {/* It handles the logistics, provides instant academic support, and unlocks deep performance insights. It's the partner you need to scale exceptional education. */}
+                        Our platform automates routine TA tasks, provides instant academic support, and unlocks deep performance insights. It's the partner you need to scale exceptional education.
                     </p>
                 </div>
                 <div className="m-10 sm:m-20 lg:m-0 lg:mt-0 text-4xl md:text-[48px]/[56px] font-bold tracking-tight">
@@ -210,7 +199,7 @@ const instructorFeatures = [
     },
     {
         id: 'if3',
-        title: 'Automatic Student Assessment Generation',
+        title: 'Automatic Assessment Generation',
         description: 'Quickly generate custom quizzes and exercises tailored to each topic, automatically assessing your students’ understanding with precision and efficiency.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Exercise Generation.gif`,
     },
@@ -225,13 +214,13 @@ const instructorFeatures = [
 const studentFeatures = [
     {
         id: 'sf1',
-        title: '24/7 Assignment Help',
+        title: '24/7 Course & Assignment Help',
         description: 'Gain clarity on assignments whenever you need. Encando’s AI chatbot provides guidance and helps you understand problems deeply without simply revealing answers.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Assignment Helper.gif`,
     },
     {
         id: 'sf2',
-        title: 'Project Coach & Grading',
+        title: 'Project Coach & Feedback',
         description: 'Receive real-time coaching and meaningful feedback on your projects, enabling you to improve your skills and achieve higher scores.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Project Coach.gif`,
     },
@@ -243,16 +232,21 @@ const studentFeatures = [
     },
 ];
 
-const FeatureSet = ({ title, features, _for }) => {
+const FeatureSet = ({ title, description, features, _for }) => {
     const [activeFeature, setActiveFeature] = useState(features[0]);
-    const [mobileExpanded, setMobileExpanded] = useState(null);
 
     return (
         <div className="mt-20">
-            <h3 className="my-4 text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase text-center">
-                        For {_for}s
-                    </h3>
-            <h3 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)] text-center">{title}</h3>
+            <h3 className="my-6 text-2xl md:text-4xl font-bold text-[var(--color-primary-light)] tracking-wider uppercase text-center">
+                For {_for}s
+            </h3>
+            {/* <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)] uppercase text-center">
+                For {_for}s
+            </h2> */}
+            <h3 className="text-xl md:text-3xl font-extrabold text-[var(--color-text-primary)] text-center">{title}</h3>
+            <p className="text-lg text-[var(--color-text-primary)] text-center">
+                {description}
+            </p>
 
             {/* Desktop View */}
             <div className="hidden lg:grid lg:grid-cols-10 lg:gap-20 lg:mt-12 items-start">
@@ -263,8 +257,8 @@ const FeatureSet = ({ title, features, _for }) => {
                             onMouseEnter={() => setActiveFeature(feature)}
                             className={`shadow-lg p-6 rounded-xl cursor-pointer transition-all duration-600 ${activeFeature.id === feature.id ? 'border-2 border-[var(--color-primary-light)]' : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface)]/50'}`}
                         >
-                            <h4 className={`font-bold text-lg ${activeFeature.id === feature.id ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-secondary)]'}`}>{feature.title}</h4>
-                            <div className={`mt-2 text-[var(--color-text-secondary)] text-base transition-all duration-1000 ease-in-out overflow-hidden ${activeFeature.id === feature.id ? 'max-h-40' : 'max-h-0'}`}>
+                            <h4 className={`font-bold text-lg ${activeFeature.id === feature.id ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)]'}`}>{feature.title}</h4>
+                            <div className={`mt-2 text-[var(--color-text-primary)] text-lg transition-all duration-1000 ease-in-out overflow-hidden ${activeFeature.id === feature.id ? 'max-h-40' : 'max-h-0'}`}>
                                 <p>{feature.description}</p>
                             </div>
                         </div>
@@ -291,7 +285,7 @@ const FeatureSet = ({ title, features, _for }) => {
                         <img src={feature.imageUrl} alt={feature.title} className="p-6 w-full h-auto object-contain" />
                         <div className="p-6">
                             <h4 className="font-bold text-lg text-[var(--color-text-primary)]">{feature.title}</h4>
-                            <p className="mt-2 text-[var(--color-text-secondary)]">{feature.description}</p>
+                            <p className="mt-2 text-[var(--color-text-primary)]">{feature.description}</p>
                         </div>
                     </div>
                 ))}
@@ -302,10 +296,10 @@ const FeatureSet = ({ title, features, _for }) => {
 
 
 const FeaturesSection = () => (
-    <section id="features" className="bg-[var(--color-bg)] py-20 sm:py-24">
+    <section id="features" className="bg-[var(--color-surface)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-y-20">
-            <FeatureSet title="Reclaim Your Time. Elevate Your Teaching." features={instructorFeatures} _for="instructor" />
-            <FeatureSet title="Your Personal Guide to Academic Success." features={studentFeatures} _for="student" />
+            <FeatureSet title="Reclaim Your Time. Elevate Your Teaching." description="Instructors can now focus on what truly matters: teaching and mentorship." features={instructorFeatures} _for="instructor" />
+            <FeatureSet title="Your Personal Guide to Academic Success." description="Students enjoy a more engaging and personalized learning journey with like-minded peers." features={studentFeatures} _for="student" />
         </div>
     </section>
 );
@@ -313,13 +307,13 @@ const FeaturesSection = () => (
 
 // SOCIAL PROOF SECTION COMPONENT
 const SocialProofSection = () => (
-    <section id="social-proof" className="bg-[var(--color-surface)] py-20 sm:py-24">
+    <section id="social-proof" className="bg-[var(--color-bg)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
                 <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
                     Building the Future of Education with Trusted Partners
                 </h2>
-                <p className="mt-4 max-w-3xl mx-auto text-lg text-[var(--color-text-secondary)]">
+                <p className="mt-4 max-w-3xl mx-auto text-lg text-[var(--color-text-primary)]">
                     We're proud to collaborate with leading academic institutions and forward-thinking organizations to redefine the learning experience.
                 </p>
             </div>
@@ -327,13 +321,13 @@ const SocialProofSection = () => (
             <div className="mt-16">
                 {/* Trusted By Section */}
                 <div className="text-center">
-                    <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">
+                    <h3 className="text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase">
                         Trusted By
                     </h3>
                     <div className="mt-6 flex justify-center items-center space-x-8 sm:space-x-12 opacity-80">
                         {/* Placeholder Logos for Universities - Replace with actual logos */}
-                        {/* <span className="text-2xl font-semibold text-[var(--color-text-secondary)]">University One</span>
-              <span className="text-2xl font-semibold text-[var(--color-text-secondary)]">University Two</span> */}
+                        {/* <span className="text-2xl font-semibold text-[var(--color-text-primary)]">University One</span>
+              <span className="text-2xl font-semibold text-[var(--color-text-primary)]">University Two</span> */}
                         <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
                         <img src="https://webassets.unt.edu/assets/branding/unt-stacked-logo.svg" alt="UNT Logo" className="h-24 w-auto" />
                     </div>
@@ -341,15 +335,15 @@ const SocialProofSection = () => (
 
                 {/* Backed By Section */}
                 <div className="mt-16 text-center">
-                    <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase">
+                    <h3 className="text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase">
                         Backed By
                     </h3>
                     <div className="mt-6 flex justify-center items-center flex-wrap gap-x-12 gap-y-6 filter ">
                         {/* Placeholder Logos for Backers - Replace with actual logos */}
-                        {/* <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Investor A</span>
-              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Accelerator B</span>
-              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">VC Firm C</span>
-              <span className="text-xl font-semibold text-[var(--color-text-secondary)]">Foundation D</span> */}
+                        {/* <span className="text-xl font-semibold text-[var(--color-text-primary)]">Investor A</span>
+              <span className="text-xl font-semibold text-[var(--color-text-primary)]">Accelerator B</span>
+              <span className="text-xl font-semibold text-[var(--color-text-primary)]">VC Firm C</span>
+              <span className="text-xl font-semibold text-[var(--color-text-primary)]">Foundation D</span> */}
                         <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
                         <img src="/assets/logos/TAMU-Innovation.avif" alt="TAMU Innovation Logo" className="h-24 w-auto" />
                         <img src="/assets/logos/NSF.png" alt="NSF Logo" className="h-24 w-auto" />
@@ -364,7 +358,7 @@ const SocialProofSection = () => (
 // CALL TO ACTION (CTA) SECTION COMPONENT
 const CtaSection = () => {
     return (
-        <section id="cta" className="bg-[var(--color-bg)] py-16 sm:py-20">
+        <section id="cta" className="bg-[var(--color-surface)] py-16 sm:py-20">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
                     {/* Left side - Text content */}
@@ -372,8 +366,8 @@ const CtaSection = () => {
                         <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
                             Ready to Transform Your Learning Environment?
                         </h2>
-                        <p className="mt-4 text-lg leading-6 text-[var(--color-text-secondary)]">
-                            See how Encando's AI can empower your institution, engage your students, and unlock limitless potential. Schedule a brief, personalized demo with our team today.
+                        <p className="mt-4 text-lg leading-6 text-[var(--color-text-primary)]">
+                            See how Encando's AI can empower your institution, engage your students, and unlock limitless potential. Schedule a brief meeting with our team today.
                         </p>
                         {/* <a href="https://join.slack.com/t/encando/shared_invite/zt-362lnbhcm-UFwOVxwsDbj27SNOPpUBJg" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 nav-button nav-button-with-icon"> */}
 
@@ -381,7 +375,7 @@ const CtaSection = () => {
                         <div className="mt-8 lg:hidden">
                             <DemoRequestForm />
                         </div>
-                        <h3 className="mt-4 text-sm font-semibold text-[var(--color-text-secondary)] tracking-wider uppercase w-full flex justify-center items-center">
+                        <h3 className="mt-4 text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase w-full flex justify-center items-center">
                             Or
                         </h3>
                         <div className="flex justify-center items-center gap-2 mt-4 w-full sm:w-auto">

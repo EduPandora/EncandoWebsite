@@ -155,7 +155,7 @@ const DemoRequestForm = () => {
         <div className="bg-white rounded-lg shadow-xl max-w-lg w-full mx-auto">
             <div className="p-6">
                 <div className="text-center mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900">Get Your Demo</h3>
+                    <h3 className="text-2xl font-bold text-[var(--color-text-primary)]">Let's Connect!</h3>
                     <p className="text-gray-600 mt-2">Fill out the form below and we'll be in touch soon.</p>
                 </div>
 
