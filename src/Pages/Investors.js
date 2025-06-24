@@ -135,7 +135,7 @@ const InvestorCta = () => (
       <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">Ready to join us at the ground floor?</h2>
       <p className="mt-4 text-lg leading-6 text-[var(--color-text-primary)]">Request our pitch deck, meet our founders, or get a personal demo.</p>
       <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-        <a href="mailto:info@encando.ai" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors">Request a Demo</a>
+        <a href="https://calendly.com/rujun-encando/30min" target="_blank" rel="noopener noreferrer" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors">Schedule a Meeting</a>
         {/* <a href="#" className="inline-block bg-[var(--color-primary)]/50 text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary)]/80 transition-colors">Book a Call</a> */}
       </div>
     </div>

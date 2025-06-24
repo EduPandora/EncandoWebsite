@@ -143,7 +143,7 @@ const ProblemSection = () => (
                                 Validated by NSF-Funded Research
                             </h3>
                             <p className="mt-4 max-w-2xl mx-auto text-lg text-[var(--color-text-primary)]">
-                                We conducted extensive interviews with educators, TAs, and students across institutions as part of our NSF Corps grant.
+                                We conducted extensive interviews with educators, TAs, and students across institutions as part of our NSF Research and I-Corps grant.
                             </p>
                         </div>
                     </div>
@@ -360,25 +360,29 @@ const CtaSection = () => {
     return (
         <section id="cta" className="bg-[var(--color-surface)] py-16 sm:py-20">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
-                    {/* Left side - Text content */}
-                    <div className="text-center lg:text-left">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
-                            Ready to Transform Your Learning Environment?
-                        </h2>
-                        <p className="mt-4 text-lg leading-6 text-[var(--color-text-primary)]">
-                            See how Encando's AI can empower your institution, engage your students, and unlock limitless potential. Schedule a brief meeting with our team today.
-                        </p>
-                        {/* <a href="https://join.slack.com/t/encando/shared_invite/zt-362lnbhcm-UFwOVxwsDbj27SNOPpUBJg" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 nav-button nav-button-with-icon"> */}
+                {/* <div className="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center"> */}
+                {/* Left side - Text content */}
+                <div className="text-center lg:text-left">
+                    <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)]">
+                        Ready to Transform Your Teaching Environment?
+                    </h2>
+                    <p className="mt-4 text-lg leading-6 text-[var(--color-text-primary)]">
+                        See how Encando's AI can empower your institution, engage your students, and unlock limitless potential. Schedule a brief meeting with our team today.
+                    </p>
+                    {/* <a href="https://join.slack.com/t/encando/shared_invite/zt-362lnbhcm-UFwOVxwsDbj27SNOPpUBJg" target="_blank" rel="noopener noreferrer" className="inline-block mt-4 nav-button nav-button-with-icon"> */}
 
 
-                        <div className="mt-8 lg:hidden">
+                    {/* <div className="mt-8 lg:hidden">
                             <DemoRequestForm />
+                        </div> */}
+                    <div className="mt-8 flex items-center w-full justify-center gap-4">
+                        <div className="flex justify-center items-center ">
+                            <a href="https://calendly.com/rujun-encando/30min" target="_blank" rel="noopener noreferrer" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors">Request a Demo</a>
                         </div>
-                        <h3 className="mt-4 text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase w-full flex justify-center items-center">
+                        {/* <h3 className="mx-4 text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase text-center">
                             Or
-                        </h3>
-                        <div className="flex justify-center items-center gap-2 mt-4 w-full sm:w-auto">
+                        </h3> */}
+                        <div className="flex justify-center items-center gap-2 w-full sm:w-auto">
                             <a href="https://join.slack.com/t/encando/shared_invite/zt-362lnbhcm-UFwOVxwsDbj27SNOPpUBJg" target="_blank" rel="noopener noreferrer" className="inline-flex bg-[var(--color-surface)] items-center gap-2 rounded-lg py-3 px-6 transition-all duration-300 transform hover:scale-105 shadow-lg">
                                 <svg className="nav-icon slack-icon" width="20" height="20" viewBox="0 0 24 24">
                                     <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.528 2.528 0 0 1 2.522-2.52h2.52v2.52z" fill="#E01E5A" />
@@ -394,13 +398,14 @@ const CtaSection = () => {
                             </a>
                         </div>
                     </div>
+                </div>
 
-                    {/* Right side - Demo form (desktop) */}
+                {/* Right side - Demo form (desktop)
                     <div className="hidden lg:block mt-10 lg:mt-0">
                         <DemoRequestForm />
-                    </div>
-                </div>
+                    </div> */}
             </div>
+            {/* </div> */}
         </section>
     );
 }
