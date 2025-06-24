@@ -15,7 +15,7 @@
   --color-secondary-dark:  #003838; /* deeper teal for footer */
 
   /* — Neutral scale — */
-  --color-bg:           #f9fafb; /* your page background */
+  --color-bg:           #f3f3f3; /* your page background */
   --color-surface:      #ffffff; /* white—for cards, modals */
   --color-border:       #e5e7eb; /* light gray (borders, dividers) */
   --color-text-primary: #111827; /* almost-black for body copy */
@@ -26,6 +26,9 @@
   --color-info:     #1e40af; /* blue-dark */
   --color-warning:  #b45309; /* amber-dark */
   --color-danger:   #991b1b; /* deep red, for errors */
+
+  /* — Font families — */
+  --font-family-radley: 'Radley', serif;
 }
 
 body {
