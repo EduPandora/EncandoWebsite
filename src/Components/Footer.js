@@ -55,13 +55,13 @@ const Footer = () => {
                     <div className="flex  items-start  space-x-2">
                         {/* <Logo className="h-8 w-auto flex-shrink-0" /><span className="text-2xl font-bold text-white">Encando</span> */}
                         <div className="flex items-center space-x-2 text-left">
-                            <img src={`${process.env.PUBLIC_URL}/assets/icons/icon-color.png`} alt="Encando AI Logo" className="h-10 w-auto flex-shrink-0" />
-                            <span className="text-xl font-bold text-white">Encando AI</span>
+                            <img src={`${process.env.PUBLIC_URL}/assets/icons/icon-color.png`} alt="Encando.AI Logo" className="h-10 w-auto flex-shrink-0" />
+                            <span className="text-xl font-bold text-white">Encando.AI</span>
                         </div>
                     </div>
                 </div>
                 <div className="mt-12 border-t border-gray-700 pt-8 flex flex-col sm:flex-row items-center justify-between">
-                    <p className="text-base text-gray-500">&copy; 2025 Encando AI, Inc. All rights reserved.</p>
+                    <p className="text-base text-gray-500">&copy; 2025 Encando.AI, Inc. All rights reserved.</p>
                     {/* <div className="flex space-x-6 mt-4 sm:mt-0">
                         <a href="#" className="hover:text-gray-300">Privacy</a>
                         <a href="#" className="hover:text-gray-300">Terms</a>
