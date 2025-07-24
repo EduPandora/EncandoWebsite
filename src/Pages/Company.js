@@ -193,22 +193,34 @@ const instructorFeatures = [
     },
     {
         id: 'if2',
+        title: 'Assignment Grading',
+        description: 'Effortlessly grade student assignments with AI. Upload your assignment, generate outlines and solutions, and let Encando’s AI provide instant, customizable grading and feedback.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Assignment Grading.gif`,
+    },
+    {
+        id: 'if3',
+        title: 'Project Grading',
+        description: 'Streamline project evaluation with automated rubrics. Upload your grading criteria, extract solutions directly from documents, and easily review or adjust grades before exporting results.',
+        imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Project Grading.gif`,
+    },
+    {
+        id: 'if4',
         title: '24/7 Teaching Assistant',
         description: 'Provide instant, reliable answers to your students’ questions any time of day. Encando’s AI-powered assistant supports continuous learning beyond the classroom.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/ChaTA.gif`,
     },
     {
-        id: 'if3',
+        id: 'if5',
         title: 'Automatic Assessment Generation',
         description: 'Quickly generate custom quizzes and exercises tailored to each topic, automatically assessing your students’ understanding with precision and efficiency.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Exercise Generation.gif`,
     },
     {
-        id: 'if4',
+        id: 'if6',
         title: 'Class-wide Performance Analytics',
         description: 'Get clear, insightful analytics at a glance. Instantly identify class trends or deep-dive into individual student performance, empowering informed teaching decisions.',
         imageUrl: `${process.env.PUBLIC_URL}/assets/images/features/Class Report.gif`,
-    },
+    }
 ];
 
 const studentFeatures = [
