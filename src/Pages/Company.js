@@ -244,60 +244,34 @@ const studentFeatures = [
     },
 ];
 
-const FeatureSet = ({ title, description, features, _for }) => {
-    const [activeFeature, setActiveFeature] = useState(features[0]);
-
+const FeatureScroller = ({ title, description, features, _for }) => {
     return (
         <div className="mt-20">
             <h3 className="my-6 text-2xl md:text-4xl font-bold text-[var(--color-primary-light)] tracking-wider uppercase text-center">
                 For {_for}s
             </h3>
-            {/* <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)] uppercase text-center">
-                For {_for}s
-            </h2> */}
             <h3 className="text-xl md:text-3xl font-extrabold text-[var(--color-text-primary)] text-center">{title}</h3>
-            <p className="text-lg text-[var(--color-text-primary)] text-center">
+            <p className="text-lg text-[var(--color-text-primary)] text-center mb-10">
                 {description}
             </p>
-
-            {/* Desktop View */}
-            <div className="hidden lg:grid lg:grid-cols-10 lg:gap-20 lg:mt-12 items-start">
-                <div className="col-span-4 space-y-4 flex h-full flex-col justify-center">
-                    {features.map((feature) => (
-                        <div
-                            key={feature.id}
-                            onMouseEnter={() => setActiveFeature(feature)}
-                            className={`shadow-lg p-6 rounded-xl cursor-pointer transition-all duration-600 ${activeFeature.id === feature.id ? 'border-2 border-[var(--color-primary-light)]' : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface)]/50'}`}
-                        >
-                            <h4 className={`font-bold text-lg ${activeFeature.id === feature.id ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)]'}`}>{feature.title}</h4>
-                            <div className={`mt-2 text-[var(--color-text-primary)] text-lg transition-all duration-1000 ease-in-out overflow-hidden ${activeFeature.id === feature.id ? 'max-h-40' : 'max-h-0'}`}>
-                                <p>{feature.description}</p>
-                            </div>
+            <div className="flex flex-col gap-12 pr-2">
+                {features.map((feature, idx) => (
+                    <div
+                        key={feature.id}
+                        className={`flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-0 rounded-2xl shadow-xs bg-[var(--color-surface)] transition-all duration-300 `}
+                    >
+                        {/* Text Section */}
+                        <div className="md:basis-2/5 flex-1 flex flex-col justify-center p-8 md:p-12">
+                            <h4 className="font-bold text-xl md:text-2xl text-[var(--color-primary)] mb-4">{feature.title}</h4>
+                            <p className="text-base md:text-lg text-[var(--color-text-primary)]">{feature.description}</p>
                         </div>
-                    ))}
-                </div>
-                <div className="col-span-6 sticky top-24 h-full">
-                    <div className="relative aspect-video bg-[var(--color-surface)] rounded-xl shadow-2xl overflow-hidden">
-                        {features.map(feature => (
-                            <img
-                                key={feature.id}
-                                src={feature.imageUrl}
-                                alt={feature.title}
-                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${activeFeature.id === feature.id ? 'opacity-100' : 'opacity-0'}`}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-
-            {/* Mobile View */}
-            <div className="lg:hidden mt-8 space-y-6">
-                {features.map((feature, index) => (
-                    <div key={feature.id} className="bg-[var(--color-surface)] rounded-lg shadow-lg overflow-hidden">
-                        <img src={feature.imageUrl} alt={feature.title} className="p-6 w-full h-auto object-contain" />
-                        <div className="p-6">
-                            <h4 className="font-bold text-lg text-[var(--color-text-primary)]">{feature.title}</h4>
-                            <p className="mt-2 text-[var(--color-text-primary)]">{feature.description}</p>
+                        {/* Image/Video Section */}
+                        <div className="md:basis-3/5 flex-1 flex items-center justify-center p-4 md:p-8">
+                            {feature.imageUrl.endsWith('.mp4') ? (
+                                <video src={feature.imageUrl} controls className="w-full h-auto max-h-100 rounded-xl shadow-md bg-black" />
+                            ) : (
+                                <img src={feature.imageUrl} alt={feature.title} className="w-full h-auto max-h-100 rounded-xl shadow-md object-contain bg-white" />
+                            )}
                         </div>
                     </div>
                 ))}
@@ -306,12 +280,11 @@ const FeatureSet = ({ title, description, features, _for }) => {
     );
 };
 
-
 const FeaturesSection = () => (
     <section id="features" className="bg-[var(--color-surface)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-y-20">
-            <FeatureSet title="Reclaim Your Time. Elevate Your Teaching." description="Instructors can now focus on what truly matters: teaching and mentorship." features={instructorFeatures} _for="instructor" />
-            <FeatureSet title="Your Personal Guide to Academic Success." description="Students enjoy a more engaging and personalized learning journey with like-minded peers." features={studentFeatures} _for="student" />
+            <FeatureScroller title="Reclaim Your Time. Elevate Your Teaching." description="Instructors can now focus on what truly matters: teaching and mentorship." features={instructorFeatures} _for="instructor" />
+            <FeatureScroller title="Your Personal Guide to Academic Success." description="Students enjoy a more engaging and personalized learning journey with like-minded peers." features={studentFeatures} _for="student" />
         </div>
     </section>
 );
