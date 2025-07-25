@@ -262,11 +262,17 @@ const FeatureSet = ({ title, description, features, _for }) => {
 
             {/* Desktop View */}
             <div className="hidden lg:grid lg:grid-cols-10 lg:gap-20 lg:mt-12 items-start">
-                <div className="col-span-4 space-y-4 flex h-full flex-col justify-center">
+                <div className="col-span-4 space-y-4 p-3 flex h-[450px] overflow-y-auto flex-col items-start">
                     {features.map((feature) => (
                         <div
                             key={feature.id}
-                            onMouseEnter={() => setActiveFeature(feature)}
+                            onMouseEnter={e => {
+                                setActiveFeature(feature);
+                                // Scroll into view if needed
+                                if (e.currentTarget && e.currentTarget.scrollIntoView) {
+                                    e.currentTarget.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                                }
+                            }}
                             className={`shadow-lg p-6 rounded-xl cursor-pointer transition-all duration-600 ${activeFeature.id === feature.id ? 'border-2 border-[var(--color-primary-light)]' : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface)]/50'}`}
                         >
                             <h4 className={`font-bold text-lg ${activeFeature.id === feature.id ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)]'}`}>{feature.title}</h4>
@@ -281,7 +287,7 @@ const FeatureSet = ({ title, description, features, _for }) => {
                         {features.map(feature => (
                             <img
                                 key={feature.id}
-                                src={feature.imageUrl}
+                                src={activeFeature.id === feature.id ? `${feature.imageUrl}?t=${activeFeature.id}` : feature.imageUrl}
                                 alt={feature.title}
                                 className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${activeFeature.id === feature.id ? 'opacity-100' : 'opacity-0'}`}
                             />
