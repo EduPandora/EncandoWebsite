@@ -244,7 +244,7 @@ const studentFeatures = [
     },
 ];
 
-const FeatureSet = ({ title, description, features, _for }) => {
+const FeatureScroller = ({ title, description, features, _for }) => {
     const [activeFeature, setActiveFeature] = useState(features[0]);
 
     return (
@@ -252,11 +252,8 @@ const FeatureSet = ({ title, description, features, _for }) => {
             <h3 className="my-6 text-2xl md:text-4xl font-bold text-[var(--color-primary-light)] tracking-wider uppercase text-center">
                 For {_for}s
             </h3>
-            {/* <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)] uppercase text-center">
-                For {_for}s
-            </h2> */}
             <h3 className="text-xl md:text-3xl font-extrabold text-[var(--color-text-primary)] text-center">{title}</h3>
-            <p className="text-lg text-[var(--color-text-primary)] text-center">
+            <p className="text-lg text-[var(--color-text-primary)] text-center mb-10">
                 {description}
             </p>
 
@@ -312,12 +309,11 @@ const FeatureSet = ({ title, description, features, _for }) => {
     );
 };
 
-
 const FeaturesSection = () => (
     <section id="features" className="bg-[var(--color-surface)] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-y-20">
-            <FeatureSet title="Reclaim Your Time. Elevate Your Teaching." description="Instructors can now focus on what truly matters: teaching and mentorship." features={instructorFeatures} _for="instructor" />
-            <FeatureSet title="Your Personal Guide to Academic Success." description="Students enjoy a more engaging and personalized learning journey with like-minded peers." features={studentFeatures} _for="student" />
+            <FeatureScroller title="Reclaim Your Time. Elevate Your Teaching." description="Instructors can now focus on what truly matters: teaching and mentorship." features={instructorFeatures} _for="instructor" />
+            <FeatureScroller title="Your Personal Guide to Academic Success." description="Students enjoy a more engaging and personalized learning journey with like-minded peers." features={studentFeatures} _for="student" />
         </div>
     </section>
 );
