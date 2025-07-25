@@ -245,6 +245,8 @@ const studentFeatures = [
 ];
 
 const FeatureScroller = ({ title, description, features, _for }) => {
+    const [activeFeature, setActiveFeature] = useState(features[0]);
+
     return (
         <div className="mt-20">
             <h3 className="my-6 text-2xl md:text-4xl font-bold text-[var(--color-primary-light)] tracking-wider uppercase text-center">
@@ -254,24 +256,51 @@ const FeatureScroller = ({ title, description, features, _for }) => {
             <p className="text-lg text-[var(--color-text-primary)] text-center mb-10">
                 {description}
             </p>
-            <div className="flex flex-col gap-12 pr-2">
-                {features.map((feature, idx) => (
-                    <div
-                        key={feature.id}
-                        className={`flex flex-col md:flex-row items-center md:items-stretch gap-8 md:gap-0 rounded-2xl shadow-xs bg-[var(--color-surface)] transition-all duration-300 `}
-                    >
-                        {/* Text Section */}
-                        <div className="md:basis-2/5 flex-1 flex flex-col justify-center p-8 md:p-12">
-                            <h4 className="font-bold text-xl md:text-2xl text-[var(--color-primary)] mb-4">{feature.title}</h4>
-                            <p className="text-base md:text-lg text-[var(--color-text-primary)]">{feature.description}</p>
+
+            {/* Desktop View */}
+            <div className="hidden lg:grid lg:grid-cols-10 lg:gap-20 lg:mt-12 items-start">
+                <div className="col-span-4 space-y-4 p-3 flex h-[450px] overflow-y-auto flex-col items-start">
+                    {features.map((feature) => (
+                        <div
+                            key={feature.id}
+                            onMouseEnter={e => {
+                                setActiveFeature(feature);
+                                // Scroll into view if needed
+                                if (e.currentTarget && e.currentTarget.scrollIntoView) {
+                                    e.currentTarget.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                                }
+                            }}
+                            className={`shadow-lg p-6 rounded-xl cursor-pointer transition-all duration-600 ${activeFeature.id === feature.id ? 'border-2 border-[var(--color-primary-light)]' : 'bg-[var(--color-surface)] hover:bg-[var(--color-surface)]/50'}`}
+                        >
+                            <h4 className={`font-bold text-lg ${activeFeature.id === feature.id ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-primary)]'}`}>{feature.title}</h4>
+                            <div className={`mt-2 text-[var(--color-text-primary)] text-lg transition-all duration-1000 ease-in-out overflow-hidden ${activeFeature.id === feature.id ? 'max-h-40' : 'max-h-0'}`}>
+                                <p>{feature.description}</p>
+                            </div>
                         </div>
-                        {/* Image/Video Section */}
-                        <div className="md:basis-3/5 flex-1 flex items-center justify-center p-4 md:p-8">
-                            {feature.imageUrl.endsWith('.mp4') ? (
-                                <video src={feature.imageUrl} controls className="w-full h-auto max-h-100 rounded-xl shadow-md bg-black" />
-                            ) : (
-                                <img src={feature.imageUrl} alt={feature.title} className="w-full h-auto max-h-100 rounded-xl shadow-md object-contain bg-white" />
-                            )}
+                    ))}
+                </div>
+                <div className="col-span-6 sticky top-24 h-full">
+                    <div className="relative aspect-video bg-[var(--color-surface)] rounded-xl shadow-2xl overflow-hidden">
+                        {features.map(feature => (
+                            <img
+                                key={feature.id}
+                                src={activeFeature.id === feature.id ? `${feature.imageUrl}?t=${activeFeature.id}` : feature.imageUrl}
+                                alt={feature.title}
+                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out ${activeFeature.id === feature.id ? 'opacity-100' : 'opacity-0'}`}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile View */}
+            <div className="lg:hidden mt-8 space-y-6">
+                {features.map((feature, index) => (
+                    <div key={feature.id} className="bg-[var(--color-surface)] rounded-lg shadow-lg overflow-hidden">
+                        <img src={feature.imageUrl} alt={feature.title} className="p-6 w-full h-auto object-contain" />
+                        <div className="p-6">
+                            <h4 className="font-bold text-lg text-[var(--color-text-primary)]">{feature.title}</h4>
+                            <p className="mt-2 text-[var(--color-text-primary)]">{feature.description}</p>
                         </div>
                     </div>
                 ))}
