@@ -14,11 +14,11 @@ const Header = () => {
         setIsMobileMenuOpen(false);
     };
 
-    const handleContactUsClick = (e) => {
-        e.preventDefault();
-        closeMobileMenu();
-        navigateAndScrollToSection('cta');
-    };
+    // const handleContactUsClick = (e) => {
+    //     e.preventDefault();
+    //     closeMobileMenu();
+    //     navigateAndScrollToSection('cta');
+    // };
 
     return (
         <header className="p-4 bg-[#f9fafb] backdrop-blur-xl sticky top-0  z-50">
@@ -54,7 +54,7 @@ const Header = () => {
                             For Investors
                         </Link>
                         
-                        <a href="#/cta" onClick={handleContactUsClick} className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        <a href="https://calendly.com/rujun-encando/30min" className="inline-block bg-[var(--color-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[var(--color-primary-light)] transition-all duration-300 transform hover:scale-105 shadow-lg">
                             Contact Us
                         </a>
                         

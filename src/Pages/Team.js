@@ -9,56 +9,63 @@ const teamMembers = [
         id: 1,
         name: 'Dr. Rujun Gao',
         position: 'Co-Founder & CEO',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/RujunGao.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/RujunGao.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/rujun-gao-00740a221/',
     },
     {
         id: 2,
         name: 'Dr. Arun Srinivasa',
         position: 'Co-Founder',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/ArunSrinivasa.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/ArunSrinivasa.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/arun-srinivasa-452768295/',
     },
     {
         id: 3,
         name: 'Dr. Krishna Narayanan',
         position: 'Co-Founder',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/KrishnaNarayanan.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/KrishnaNarayanan.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/krishna-narayanan-3237749/',
     },
     {
         id: 4,
         name: 'Dev Garg',
         position: 'Senior Founding Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/DevGarg.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/DevGarg.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/devgargd7/',
     },
     {
         id: 5,
         name: 'Jawahar Sai Nathani',
         position: 'Senior Founding Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/JawaharSaiNathani.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/JawaharSaiNathani.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/jawahar-nathani/',
     },
     {
         id: 6,
-        name: 'Pranav Srinivasan',
-        position: 'Full Stack Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/PranavSrinivasan.jpg`, // Placeholder image
-        linkedinUrl: 'https://www.linkedin.com/in/pranav-srinivasan-736170189/',
+        name: 'Dr. Hillary Merzdorf',
+        position: 'Research & Outreach Lead',
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/HillaryMerzdorf.jpg`, 
+        linkedinUrl: 'https://www.linkedin.com/in/hillary-merzdorf-ph-d-19478b169/',
     },
     {
         id: 7,
-        name: 'Jonathan Herrera',
+        name: 'Pranav Srinivasan',
         position: 'Full Stack Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/JonathanHerrera.jpg`, // Placeholder image
-        linkedinUrl: 'https://www.linkedin.com/in/jonathanaherrera/',
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/PranavSrinivasan.jpg`, 
+        linkedinUrl: 'https://www.linkedin.com/in/pranav-srinivasan-736170189/',
     },
     {
         id: 8,
+        name: 'Jonathan Herrera',
+        position: 'Full Stack Software Developer',
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/JonathanHerrera.jpg`, 
+        linkedinUrl: 'https://www.linkedin.com/in/jonathanaherrera/',
+    },
+    {
+        id: 9,
         name: 'Yafei Li',
         position: 'Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/YafeiLi.jpg`, // Placeholder image
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/YafeiLi.jpg`, 
         linkedinUrl: 'https://www.linkedin.com/in/yafei-li-felix/',
     },
 ];
