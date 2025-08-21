@@ -63,7 +63,7 @@ function Product() {
             <div className="video-frame-container">
               <div className="video-aspect-ratio-keeper">
                 <iframe
-                  src="https://www.youtube.com/embed/tZBreC_2SfM" // Placeholder YouTube Video ID
+                  src="https://www.youtube.com/embed/dSER1UTy074" // Placeholder YouTube Video ID
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
