@@ -66,7 +66,7 @@ const teamMembers = [
         name: 'Shrinath Narasi',
         position: 'Software Developer',
         photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/ShrinathNarasi.png`, // Placeholder image
-        linkedinUrl: 'www.linkedin.com/in/shrinaath-narasimhan-208025236/',
+        linkedinUrl: 'https://www.linkedin.com/in/shrinaath-narasimhan-208025236/',
     },
 ];
 
