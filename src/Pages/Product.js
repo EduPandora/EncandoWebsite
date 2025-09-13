@@ -80,7 +80,7 @@ function Product() {
               Simple, Transparent Pricing
             </h2>
 
-            <div className="pricing-cards">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 items-stretch justify-self-center">
               {/* Student Card */}
               <div className="pricing-card student-card">
                 <h3 className="pricing-card-title">For Students</h3>
@@ -126,47 +126,291 @@ function Product() {
 
               {/* Instructor Card */}
               <div className="pricing-card">
-    <h3 className="pricing-card-title">For Instructors</h3>
-
-    {/* Limited Time Offer */}
-    <div className="limited-offer">
-        <h4 className="font-bold text-lg mb-1">Early Access Offer</h4>
-        <p className="text-sm">Get a **2-week free trial** on us. Available to the first 50 instructors who activate before August 15th, 2025.</p>
-    </div>
-
-    {/* --- NEW, IMPROVED PRICING LIST --- */}
-    <div className="pricing-details">
-        <h4 className="pricing-details-title">Regular Pricing</h4>
-        <div className="pricing-list">
-            {/* Item 1: Per Course */}
-            <div className="pricing-list-item">
-                <div className="plan-info">
-                    <span className="plan-name">Per Course</span>
-                    <span className="plan-description">Instructor access for 1 course/semester</span>
+                <h3 className="pricing-card-title">For Instructors</h3>
+                
+                <div className="pricing-details">
+                  <div className="pricing-list">
+                    {/* Free Trial */}
+                    <div className="pricing-list-item">
+                      <div className="plan-info">
+                        <span className="plan-name">Free Trial</span>
+                        {/* <span className="plan-description">
+                          14 days full access
+                        </span> */}
+                      </div>
+                      <div className="plan-price">14 days Full Access</div>
+                    </div>
+                    
+                    {/* Instructor Pro */}
+                    <div className="pricing-list-item">
+                      <div className="plan-info">
+                        <span className="plan-name">Instructor Pro</span>
+                        <span className="plan-description">
+                          Introductory rate
+                        </span>
+                      </div>
+                      <div className="plan-price">$99/month</div>
+                    </div>
+                  </div>
                 </div>
-                <div className="plan-price">$700/course/semester</div>
-            </div>
-            {/* Item 2: Per Student */}
-            <div className="pricing-list-item">
-                <div className="plan-info">
-                    <span className="plan-name">Per Student</span>
-                    <span className="plan-description">Student usage access</span>
-                </div>
-                <div className="plan-price">$10/student/semester</div>
-            </div>
-            {/* Item 3: Department License */}
-            <div className="pricing-list-item">
-                <div className="plan-info">
-                    <span className="plan-name">Department License</span>
-                    <span className="plan-description">Custom pricing available</span>
-                </div>
-                <div className="plan-price">Contact us</div>
-            </div>
-        </div>
-    </div>
-    {/* --- END PRICING LIST --- */}
 
-</div>
+                <ul className="pricing-features">
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Unlimited courses
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Automated grading & personalized feedback
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    AI-powered quiz & exam generation
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Real-time learning analytics
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    24/7 student support
+                  </li>
+                </ul>
+              </div>
+
+              {/* Departments Card */}
+              <div className="pricing-card">
+                <h3 className="pricing-card-title">For Departments</h3>
+                
+                <div className="pricing-details">
+                  <div className="pricing-list">
+                    <div className="pricing-list-item">
+                      <div className="plan-info">
+                        <span className="plan-name">Pilot Package</span>
+                        <span className="plan-description">
+                          Per-semester basis
+                        </span>
+                      </div>
+                      <div className="plan-price">Contact us</div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="pricing-features">
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Unlimited instructors & students
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Department-wide analytics dashboard
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Canvas, Blackboard & other LMS integrations
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Dedicated onboarding, faculty training, and support
+                  </li>
+                </ul>
+              </div>
+
+              {/* Institutions Card */}
+              <div className="pricing-card">
+                <h3 className="pricing-card-title">For Institutions</h3>
+                
+                <div className="pricing-details">
+                  <div className="pricing-list">
+                    <div className="pricing-list-item">
+                      <div className="plan-info">
+                        <span className="plan-name">Enterprise License</span>
+                        <span className="plan-description">
+                          Pricing tailored to student enrollment
+                        </span>
+                      </div>
+                      <div className="plan-price">Contact us</div>
+                    </div>
+                  </div>
+                </div>
+
+                <ul className="pricing-features">
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Campus-wide access for all faculty & students
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Advanced analytics for Deans/Administrators
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Compliance (ADA, TX-RAMP, VPAT, FERPA, GDPR)
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Enterprise-grade data security and privacy protections
+                  </li>
+                  <li>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      className="w-5 h-5 text-green-500"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.052-.143z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Dedicated customer success manager
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>

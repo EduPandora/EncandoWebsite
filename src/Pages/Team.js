@@ -63,10 +63,10 @@ const teamMembers = [
     },
     {
         id: 9,
-        name: 'Yafei Li',
+        name: 'Shrinath Narasi',
         position: 'Software Developer',
-        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/YafeiLi.jpg`, 
-        linkedinUrl: 'https://www.linkedin.com/in/yafei-li-felix/',
+        photoUrl: `${process.env.PUBLIC_URL}/assets/team-photos/ShrinathNarasi.png`, // Placeholder image
+        linkedinUrl: 'www.linkedin.com/in/shrinaath-narasimhan-208025236/',
     },
 ];
 

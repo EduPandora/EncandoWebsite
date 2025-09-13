@@ -175,8 +175,7 @@
 }
 
 .product-pricing-container {
-    max-width: 900px;
-    margin: 0 auto;
+    margin: 0 10px;
     text-align: center;
 }
 
@@ -187,14 +186,7 @@
     margin-bottom: 3rem;
 }
 
-/* Pricing Cards Container */
-.pricing-cards {
-    display: flex;
-    flex-wrap: wrap; /* Allows cards to stack on smaller screens */
-    gap: 2rem;
-    justify-content: center;
-    align-items: stretch; /* Makes cards equal height */
-}
+/* Pricing Cards Container - Now using Tailwind classes in HTML */
 
 /* Individual Card Styling */
 .pricing-card {
@@ -202,9 +194,10 @@
     border-radius: 16px;
     padding: 2.5rem 2rem;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    flex: 1;
     min-width: 300px; /* Prevents cards from getting too narrow */
     max-width: 400px;
+    width: 100%; /* Take full width up to max-width */
+    margin: 0 auto; /* Center the card within its grid cell */
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -421,11 +414,6 @@
         font-size: 2rem;
     }
     
-    .pricing-cards {
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-    }
     
     .pricing-card {
         max-width: 100%;
