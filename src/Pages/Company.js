@@ -344,6 +344,8 @@ const SocialProofSection = () => (
               <span className="text-2xl font-semibold text-[var(--color-text-primary)]">University Two</span> */}
                         <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
                         <img src="https://webassets.unt.edu/assets/branding/unt-stacked-logo.svg" alt="UNT Logo" className="h-24 w-auto" />
+                        <img src="https://www.ttu.edu/brand/images/visual-identity/ttu-wordmark-stack.png" alt="TTU Logo" className="h-24 w-auto" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/77/University_of_Texas_at_Austin_logo.svg" alt="UTMAC Logo" className="h-16 w-auto" />
                     </div>
                 </div>
 
@@ -361,7 +363,8 @@ const SocialProofSection = () => (
                         <img src="/assets/logos/TAMU.png" alt="TAMU Logo" className="h-24 w-auto" />
                         <img src="/assets/logos/TAMU-Innovation.avif" alt="TAMU Innovation Logo" className="h-24 w-auto" />
                         <img src="/assets/logos/NSF.png" alt="NSF Logo" className="h-24 w-auto" />
-                        <img src="/assets/logos/NSF-I-Corps.jpg" alt="NSF I-Corps Logo" className="h-24 w-auto" />
+                        <img src="/assets/logos/NSF-I-Corps.jpg" alt="NSF I-Corps Logo" className="h-16 w-auto" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/500px-Google_2015_logo.svg.png" alt="Google Logo" className="h-14 w-auto" />
                     </div>
                 </div>
             </div>
