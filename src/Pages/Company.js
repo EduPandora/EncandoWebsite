@@ -338,7 +338,7 @@ const SocialProofSection = () => (
                     <h3 className="text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase">
                         Trusted By
                     </h3>
-                    <div className="mt-6 flex justify-center items-center space-x-8 sm:space-x-12 opacity-80">
+                    <div className="mt-6 flex justify-center items-center flex-wrap gap-x-12 gap-y-6 filter">
                         {/* Placeholder Logos for Universities - Replace with actual logos */}
                         {/* <span className="text-2xl font-semibold text-[var(--color-text-primary)]">University One</span>
               <span className="text-2xl font-semibold text-[var(--color-text-primary)]">University Two</span> */}
@@ -367,7 +367,192 @@ const SocialProofSection = () => (
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/500px-Google_2015_logo.svg.png" alt="Google Logo" className="h-14 w-auto" />
                     </div>
                 </div>
+
+                {/* Compliance Section */}
+                <div className="mt-16 text-center">
+                    <h3 className="text-base font-bold text-[var(--color-text-primary)] tracking-wider uppercase">
+                        Compliance & Security
+                    </h3>
+                    <div className="mt-8 flex justify-center items-center flex-wrap gap-8 md:gap-12">
+                        {/* TX-RAMP Level-2 */}
+                        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <img 
+                                src="/assets/logos/TX-Ramp-Certification-Badge.png" 
+                                alt="TX-RAMP Level-2 Certified" 
+                                className="h-20 md:h-24 w-auto object-contain"
+                            />
+                        </div>
+
+                        {/* FERPA */}
+                        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <img 
+                                src="/assets/logos/ferpa.png" 
+                                alt="FERPA Compliant" 
+                                className="h-20 md:h-24 w-auto object-contain"
+                            />
+                        </div>
+
+                        {/* WCAG AA 2.1 */}
+                        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <img 
+                                src="/assets/logos/WCAG.png" 
+                                alt="WCAG AA 2.1 - VPAT Available" 
+                                className="h-20 md:h-24 w-auto object-contain"
+                            />
+                        </div>
+
+                        {/* HECVAT */}
+                        <div className="flex flex-col items-center hover:scale-105 transition-transform duration-300">
+                            <img 
+                                src="/assets/logos/HECVAT.png" 
+                                alt="HECVAT Assessed" 
+                                className="h-20 md:h-24 w-auto object-contain"
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
+);
+
+// TESTIMONIALS SECTION COMPONENT
+const QuoteIcon = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.768-.695-1.327-.825-.55-.13-1.07-.14-1.54-.03-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.165 1.4.615 2.52 1.35 3.35.732.833 1.646 1.25 2.742 1.25.967 0 1.768-.29 2.402-.876.627-.576.942-1.365.942-2.368v.012z" />
+    </svg>
+);
+
+const testimonials = [
+    {
+        id: 1,
+        quote: <>The AI-assisted grading is reasonably<span className="text-[var(--color-primary)] font-semibold"> accurate</span>, <span className="text-[var(--color-primary)] font-semibold">very consistent</span>, and <span className="text-[var(--color-primary)] font-semibold">informative to students</span>. This significantly improves the <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">efficiency, accuracy, and fairness</span> in grading assignments and exams.</>,
+        name: "Bruce L. Tai",
+        title: "Associate Professor of Mechanical Engineering",
+        institution: "Texas A&M University",
+        image: `${process.env.PUBLIC_URL}/assets/images/testimonials/Tai-Bruce.jpg`,
+        textSize: "text-base md:text-lg lg:text-xl" // Medium quote - responsive
+    },
+    {
+        id: 2,
+        quote: <>Encando's AI-assisted report grading made it possible to maintain <span className="text-[var(--color-primary)] font-semibold">consistent grading across multiple graders</span>. It <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">saved us time</span> and allowed us to focus more on giving <span className="text-[var(--color-primary)] font-semibold">meaningful feedback</span> to students. I really love the <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">Coach Feedback</span> feature. It provided well-structured formative guidance and helped students <span className="text-[var(--color-primary)] font-semibold">improve their work</span> before their final submission.</>,
+        name: "Kim Haejune",
+        title: "Instructional Associate Professor, Mechanical Engineering",
+        institution: "Texas A&M University",
+        image: `${process.env.PUBLIC_URL}/assets/images/testimonials/haejune-kim.jpg`,
+        textSize: "text-base md:text-base lg:text-lg" // Longest quote - responsive
+    },
+    {
+        id: 3,
+        quote: <>Encando helps students <span className="text-[var(--color-primary)] font-semibold">understand a topic through examples</span>; <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">saves time</span> when grading structured homework.</>,
+        name: "Wayne Hung",
+        title: "Professor, Engineering Technology & Industrial Distribution",
+        institution: "Texas A&M University",
+        image: `${process.env.PUBLIC_URL}/assets/images/testimonials/hung-wayne.jpg`,
+        textSize: "text-lg md:text-xl lg:text-2xl" // Shortest quote - responsive
+    }
+];
+
+const TestimonialCard = ({ testimonial, index }) => (
+    <div 
+        className={`group relative bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full ${index === 1 ? 'lg:scale-105 lg:z-10' : ''}`}
+        style={{ animationDelay: `${index * 150}ms` }}
+    >
+        {/* Decorative gradient border on hover */}
+        <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-primary-light)] to-[var(--color-secondary)] opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-sm"></div>
+        <div className="absolute inset-[1px] rounded-xl sm:rounded-2xl bg-white -z-10"></div>
+        
+        {/* Quote icon */}
+        <div className="absolute -top-3 sm:-top-4 left-5 sm:left-8">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-light)] rounded-full flex items-center justify-center shadow-lg">
+                <QuoteIcon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+            </div>
+        </div>
+        
+        {/* Quote text with highlighted keywords - text size varies by quote length */}
+        <blockquote className={`mt-3 sm:mt-4 text-[var(--color-text-primary)] ${testimonial.textSize || 'text-base md:text-lg'} leading-relaxed flex-grow`}>
+            "{testimonial.quote}"
+        </blockquote>
+        
+        {/* Author info - pushed to bottom */}
+        <div className="mt-auto pt-4 sm:pt-6 border-t border-gray-100">
+            <div className="flex items-center gap-3 sm:gap-4">
+                {/* Avatar with fixed dimensions - responsive sizes */}
+                <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 min-w-[2.75rem] sm:min-w-[3rem] md:min-w-[3.5rem] min-h-[2.75rem] sm:min-h-[3rem] md:min-h-[3.5rem] rounded-full overflow-hidden shadow-md ring-2 ring-[var(--color-primary)]/20 flex-shrink-0">
+                    {testimonial.image ? (
+                        <img 
+                            src={testimonial.image} 
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-light)] flex items-center justify-center text-white font-bold text-sm sm:text-base md:text-lg">
+                            {testimonial.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                    )}
+                </div>
+                <div className="min-w-0 flex-1">
+                    <h4 className="font-bold text-sm sm:text-base text-[var(--color-text-primary)]">{testimonial.name}</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 line-clamp-2 sm:truncate">{testimonial.title}</p>
+                    <p className="text-xs sm:text-sm font-medium text-[var(--color-primary)]">{testimonial.institution}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+);
+
+const TestimonialsSection = () => (
+    <section id="testimonials" className="relative bg-gradient-to-b from-[#f8fafc] to-[#f1f5f9] py-20 sm:py-28 overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[var(--color-primary)] opacity-5 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[var(--color-primary-light)] opacity-5 rounded-full blur-3xl"></div>
+            {/* Grid pattern */}
+            <div className="absolute inset-0 opacity-[0.02]" style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section header */}
+            <div className="text-center mb-10 sm:mb-12 md:mb-16">
+                <span className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm sm:text-base font-bold rounded-full mb-3 sm:mb-4 tracking-wider uppercase">
+                    Testimonials
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[var(--color-text-primary)] mb-3 sm:mb-4 px-2">
+                    Trusted by <span className="text-[var(--color-primary-light)]">Leading Educators</span>
+                </h2>
+                <p className="mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600 px-4">
+                    Hear from professors who are transforming their teaching experience with Encando.
+                </p>
+            </div>
+
+            {/* Testimonials grid - responsive: 1 col mobile, 2 col tablet, 3 col desktop */}
+            <div className="grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-stretch pt-4">
+                {testimonials.map((testimonial, index) => (
+                    <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
+                ))}
+            </div>
+
+            {/* Stats bar */}
+            {/* <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 p-8 bg-white/60 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-100">
+                <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">15+</div>
+                    <div className="text-sm text-gray-600 mt-1">Courses Using Encando</div>
+                </div>
+                <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">2000+</div>
+                    <div className="text-sm text-gray-600 mt-1">Students Helped</div>
+                </div>
+                <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">50K+</div>
+                    <div className="text-sm text-gray-600 mt-1">Assignments Graded</div>
+                </div>
+                <div className="text-center">
+                    <div className="text-3xl md:text-4xl font-bold text-[var(--color-primary)]">90%</div>
+                    <div className="text-sm text-gray-600 mt-1">Time Saved on Grading</div>
+                </div>
+            </div> */}
         </div>
     </section>
 );
@@ -439,6 +624,7 @@ const Company = () => {
                 <SolutionSection />
                 <FeaturesSection />
                 <SocialProofSection />
+                <TestimonialsSection />
                 <CtaSection />
             </main>
             <Footer />
