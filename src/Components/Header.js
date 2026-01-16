@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <>
             <header className="bg-[#f9fafb] backdrop-blur-xl sticky top-0  z-50">
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 text-gray-800 text-center py-2 px-4 text-sm border-b border-amber-200 mb-3">
+                <div className="bg-gradient-to-r from-amber-50 to-orange-50 text-gray-800 text-center py-2 px-4 text-sm border-b border-amber-200">
                     <span className="font-medium">🚀 <strong>New Product!</strong>{" "} Smart Note — Convert handwritten & digital PDFs to ADA-compliant accessible documents in minutes. {" "}</span>
                     <a 
                         href="https://ada.encando.com" 
@@ -50,7 +50,7 @@ const Header = () => {
                     </button>
                     
                     <nav>
-                        <div className={`nav-buttons-container ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+                        <div className={`nav-buttons-container my-3 ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
                             {/* <Link to="/" className="nav-button" onClick={closeMobileMenu}>
                                 Company
                             </Link> */}
