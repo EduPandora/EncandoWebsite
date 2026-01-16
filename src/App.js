@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import Product from './Pages/Product';
+import EncandoPlatform from './Pages/EncandoPlatform';
+import SmartNote from './Pages/SmartNote';
 import Company from './Pages/Company';
 import Team from './Pages/Team';
 import NotFoundPage from './Pages/NotFoundPage';
@@ -12,7 +13,8 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Company />} />
-                <Route path="/product" element={<Product />} />
+                <Route path="/product/encando-platform" element={<EncandoPlatform />} />
+                <Route path="/product/smart-note" element={<SmartNote />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/investors" element={<InvestorsPage />} />
                 <Route path="*" element={<NotFoundPage />} />

@@ -556,7 +556,7 @@ const SocialProofSection = () => (
             <img
               src="/assets/logos/TAMU.png"
               alt="TAMU Logo"
-              className="h-24 w-auto"
+              className="h-36 w-auto"
             />
             <img
               src="https://webassets.unt.edu/assets/branding/unt-stacked-logo.svg"
@@ -590,7 +590,7 @@ const SocialProofSection = () => (
             <img
               src="/assets/logos/TAMU.png"
               alt="TAMU Logo"
-              className="h-24 w-auto"
+              className="h-28 w-auto"
             />
             <img
               src="/assets/logos/TAMU-Innovation.avif"
