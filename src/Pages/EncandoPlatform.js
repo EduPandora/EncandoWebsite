@@ -4,7 +4,7 @@ import Footer from "../Components/Footer";
 import "../Styles/Product.css"; // Import Product.css
 import TryMe from "../Components/Elements/TryMe";
 
-function Product() {
+function EncandoPlatform() {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -420,4 +420,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default EncandoPlatform;
