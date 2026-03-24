@@ -1,137 +1,158 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 
-// Simple icon components to replace lucide-react
-const CheckIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="20 6 9 17 4 12" />
-    </svg>
-);
+const WAITLIST_STORAGE_KEY = 'feature_waitlist_joined';
+const ADA_APP_ORIGIN = process.env.REACT_APP_ADA_API_URL || 'https://ada.encando.com';
 
-const ArrowRightIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <line x1="5" y1="12" x2="19" y2="12" />
-        <polyline points="12 5 19 12 12 19" />
-    </svg>
-);
+const publicUrl = process.env.PUBLIC_URL || '';
+const landingAsset = (filename) => `${publicUrl}/assets/landing-page/${filename}`;
 
-const UploadIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="17 8 12 3 7 8" />
-        <line x1="12" y1="3" x2="12" y2="15" />
-    </svg>
-);
+const SMART_NOTE_LOGO = 'https://d1d1is78wh5kw.cloudfront.net/SmartNoteBrandLogo.png';
 
-const WandIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
-        <path d="m14 7 3 3" />
-        <path d="M5 6v4" /><path d="M19 14v4" /><path d="M10 2v2" /><path d="M7 8H3" /><path d="M21 16h-4" /><path d="M11 3H9" />
-    </svg>
-);
+const IMG = {
+    handwritten: landingAsset('handwritten-doc.png'),
+    digital: landingAsset('digital-doc.png'),
+    mainLayout: landingAsset('main-layout.png'),
+    documentsView: landingAsset('documents-view.png'),
+    barGraph: landingAsset('bar-graph.png'),
+    editorOptions: landingAsset('editor-options.png'),
+};
 
-const PenSquareIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-        <path d="M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z" />
-    </svg>
-);
+async function joinFeatureWaitlist({ email, features }) {
+    const res = await fetch(`${ADA_APP_ORIGIN}/api/waitlist/join`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, features }),
+    });
+    if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || 'Waitlist request failed');
+    }
+    return res.json();
+}
 
-const AwardIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="8" r="6" />
-        <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-    </svg>
-);
+function Icon({ children, className }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+            {children}
+        </svg>
+    );
+}
 
-const ShieldCheckIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-        <path d="m9 12 2 2 4-4" />
-    </svg>
-);
+function ArrowRight({ className }) {
+    return (
+        <Icon className={className}>
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
+        </Icon>
+    );
+}
 
-const UsersIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-);
+function Play({ className }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <polygon points="5 3 19 12 5 21 5 3" />
+        </svg>
+    );
+}
 
-const TypeIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <polyline points="4 7 4 4 20 4 20 7" />
-        <line x1="9" y1="20" x2="15" y2="20" />
-        <line x1="12" y1="4" x2="12" y2="20" />
-    </svg>
-);
+function Check({ className }) {
+    return (
+        <Icon className={className}>
+            <polyline points="20 6 9 17 4 12" />
+        </Icon>
+    );
+}
 
-const TableIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M12 3v18" /><rect width="18" height="18" x="3" y="3" rx="2" />
-        <path d="M3 9h18" /><path d="M3 15h18" />
-    </svg>
-);
+function Upload({ className }) {
+    return (
+        <Icon className={className}>
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+        </Icon>
+    );
+}
 
-const ImageIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-        <circle cx="9" cy="9" r="2" />
-        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-    </svg>
-);
+function Wand2({ className }) {
+    return (
+        <Icon className={className}>
+            <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z" />
+            <path d="m14 7 3 3" />
+        </Icon>
+    );
+}
 
-const PaletteIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
-        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
-        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
-        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
-        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z" />
-    </svg>
-);
+function PenSquare({ className }) {
+    return (
+        <Icon className={className}>
+            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+            <path d="M18.375 2.625a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4Z" />
+        </Icon>
+    );
+}
 
-const LinkIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-    </svg>
-);
+function Gift({ className }) {
+    return (
+        <Icon className={className}>
+            <rect x="3" y="8" width="18" height="4" rx="1" />
+            <path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
+            <path d="M12 8H7.5a2.5 2.5 0 1 1 0-5C11 3 12 8 12 8s1-5 3.5-5a2.5 2.5 0 0 1 0 5H12z" />
+        </Icon>
+    );
+}
 
-const ZapIcon = ({ className, fill }) => (
-    <svg className={className} viewBox="0 0 24 24" fill={fill || "none"} stroke="currentColor" strokeWidth="2">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-    </svg>
-);
-
-const RulerIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z" />
-        <path d="m14.5 12.5 2-2" /><path d="m11.5 9.5 2-2" /><path d="m8.5 6.5 2-2" /><path d="m17.5 15.5 2-2" />
-    </svg>
-);
-
-const RadicalIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M3 12h2l4 8 6-16h6" />
-    </svg>
-);
-
-const PersonStandingIcon = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <circle cx="12" cy="5" r="1" />
-        <path d="m9 20 3-6 3 6" /><path d="m6 8 6 2 6-2" /><path d="M12 10v4" />
-    </svg>
-);
+function CheckCircle2({ className }) {
+    return (
+        <Icon className={className}>
+            <circle cx="12" cy="12" r="10" />
+            <path d="m9 12 2 2 4-4" />
+        </Icon>
+    );
+}
 
 function SmartNote() {
+    const [selectedFeatures, setSelectedFeatures] = useState([]);
+    const [email, setEmail] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [hasJoinedWaitlist, setHasJoinedWaitlist] = useState(false);
+    const [waitlistError, setWaitlistError] = useState(null);
+
+    useEffect(() => {
+        if (localStorage.getItem(WAITLIST_STORAGE_KEY) === 'true') {
+            setHasJoinedWaitlist(true);
+        }
+    }, []);
+
     const scrollToSection = (sectionId) => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    };
+
+    const handleFeatureToggle = (featureValue) => {
+        setSelectedFeatures((prev) =>
+            prev.includes(featureValue) ? prev.filter((f) => f !== featureValue) : [...prev, featureValue]
+        );
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setWaitlistError(null);
+        if (selectedFeatures.length === 0) return;
+
+        setIsSubmitting(true);
+        try {
+            await joinFeatureWaitlist({ email, features: selectedFeatures });
+            localStorage.setItem(WAITLIST_STORAGE_KEY, 'true');
+            setHasJoinedWaitlist(true);
+            setSelectedFeatures([]);
+            setEmail('');
+        } catch (err) {
+            console.error('Failed to join waitlist:', err);
+            setWaitlistError('Could not submit — try again or start at ada.encando.com');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -139,479 +160,383 @@ function SmartNote() {
         <div className="min-h-screen bg-white">
             <Header />
 
-            {/* Hero Section */}
-            <section className="relative bg-gradient-to-br from-blue-50 to-white overflow-hidden">
-                {/* Decorative Background Elements */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 opacity-5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 left-0 w-80 h-80 bg-red-500 opacity-5 rounded-full blur-3xl"></div>
+            <section id="hero" className="relative pt-12 pb-16 overflow-hidden bg-gradient-to-b from-blue-50/50 via-white to-white">
+                <div className="max-w-7xl mx-auto px-6 text-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-8 border border-blue-100">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
+                        </span>
+                        Now Processing Digital & Handwritten Documents
+                    </div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        {/* Left Content */}
-                        <div className="text-center lg:text-left">
-                            {/* Trust Badge */}
-                            <div className="inline-flex items-center bg-white rounded-full px-4 py-2 shadow-md mb-6">
-                                <img
-                                    src={`${process.env.PUBLIC_URL}/assets/icons/shield-icon.png`}
-                                    alt="Shield"
-                                    className="h-4 w-4 mr-2"
-                                    onError={(e) => { e.target.style.display = 'none' }}
-                                />
-                                <span className="text-sm text-gray-500">
-                                    Trusted by Leading Faculty at{" "}
-                                    <span className="font-semibold text-gray-900">
-                                        Texas A&M University
-                                    </span>
-                                </span>
-                            </div>
-                            {/* Main Headline */}
-                            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                                From Handwritten Notes to
-                                <span className="text-blue-600"> Digitally Accessible</span> <br />
-                                Documents
-                            </h1>
-                            {/* Subheadline */}
-                            <p className="text-lg sm:text-xl text-gray-500 mb-8 leading-relaxed">
-                                AI-powered conversion that makes your PDFs fully accessible and ADA
-                                & WCAG 2.1 compliant in minutes. Edit text, tables, and equations
-                                with our advanced editor.
-                            </p>
-                            {/* CTA Buttons */}
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-6">
-                                <a
-                                    href="https://ada.encando.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 shadow-xl hover:shadow-2xl transition-all"
-                                >
-                                    Start for Free
-                                    <ArrowRightIcon className="ml-2 h-4 w-4" />
-                                </a>
-                                <button
-                                    onClick={() => scrollToSection("how-it-works")}
-                                    className="inline-flex items-center justify-center border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all"
-                                >
-                                    See How It Works
-                                    <svg className="ml-2 h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                                        <polygon points="5 3 19 12 5 21 5 3" />
-                                    </svg>
-                                </button>
-                            </div>
-                            {/* Microcopy */}
-                            <div className="flex items-center justify-center lg:justify-start gap-4 flex-wrap text-sm text-gray-500">
-                                <span className="flex items-center">
-                                    <CheckIcon className="text-green-500 mr-2 h-4 w-4" />
-                                    20 Free Credits
-                                </span>
-                                <span className="flex items-center">
-                                    <CheckIcon className="text-green-500 mr-2 h-4 w-4" />
-                                    No Credit Card Required
-                                </span>
-                                <span className="flex items-center">
-                                    <CheckIcon className="text-green-500 mr-2 h-4 w-4" />
-                                    1 Credit = 1 Page ($0.15)
-                                </span>
-                            </div>
-                        </div>
-                        {/* Right Visual */}
-                        <div className="relative">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-                                <img
-                                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/21673b76-2b34-4a27-162f-ac4ee65d4700/publicContain"
-                                    alt="AI technology automates document verification for accuracy and compliance."
-                                    className="w-full h-auto"
-                                />
-                                {/* Floating Badge */}
-                                <div className="absolute top-6 right-6 bg-white rounded-lg px-4 py-2 shadow-lg">
-                                    <div className="flex items-center gap-2">
-                                        <ZapIcon className="text-yellow-500 h-5 w-5" fill="yellow" />
-                                        <span className="font-semibold text-gray-900">
-                                            AI-Powered
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-slate-900 mb-6">
+                        Accessible documents <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500">for everyone.</span>
+                    </h1>
+                    <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                        Transform handwritten notes and digital PDFs into ADA-compliant documents with semantic math and AI-generated
+                        image descriptions.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+                        <a
+                            href="https://ada.encando.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 shadow-xl hover:shadow-2xl rounded-xl px-8 py-4 font-bold text-lg transition-all"
+                        >
+                            Start for Free
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                        </a>
+                        <button
+                            type="button"
+                            onClick={() => scrollToSection('how-it-works')}
+                            className="inline-flex items-center justify-center border-2 border-slate-300 bg-white hover:bg-slate-50 rounded-xl px-8 py-4 font-bold text-lg text-slate-800 transition-all"
+                        >
+                            See How It Works
+                            <Play className="ml-2 h-4 w-4" />
+                        </button>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-4 flex-wrap text-sm text-slate-600 mb-16">
+                        <span className="flex items-center">
+                            <Check className="text-green-600 mr-2 h-4 w-4" />
+                            20 Free Credits
+                        </span>
+                        <span className="flex items-center">
+                            <Check className="text-green-600 mr-2 h-4 w-4" />
+                            No Credit Card Required
+                        </span>
+                        <span className="flex items-center">
+                            <Check className="text-green-600 mr-2 h-4 w-4" />
+                            1 Credit = 1 Page ($0.15)
+                        </span>
                     </div>
                 </div>
             </section>
 
-            {/* How It Works Section */}
-            <section id="how-it-works" className="bg-white py-16 sm:py-20 lg:py-24">
+            <section id="how-it-works" className="bg-slate-50 py-16 border-b border-slate-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Section Header */}
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                            How It Works
-                        </h2>
-                        <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                            Transform your handwritten notes into accessible digital documents in
-                            three simple steps
+                    <div className="text-center mb-12 lg:mb-16">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">How It Works</h2>
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                            Transform any PDF document into accessible digital documents in three simple steps
                         </p>
                     </div>
-                    {/* Steps */}
-                    <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
-                        {/* Step 1 */}
-                        <div className="relative group">
-                            <div className="bg-gradient-to-br from-gray-100 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <span className="text-2xl font-bold text-white">1</span>
-                                </div>
-                                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mb-6 mx-auto shadow-md">
-                                    <UploadIcon className="h-10 w-10 text-blue-600" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                                    Upload Your PDF
-                                </h3>
-                                <p className="text-gray-500 text-center leading-relaxed">
-                                    Simply drag and drop your handwritten notes or scanned documents
-                                    in PDF format
-                                </p>
-                            </div>
-                            <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 z-10">
-                                <ArrowRightIcon className="h-8 w-8 text-blue-600" />
-                            </div>
-                        </div>
-                        {/* Step 2 */}
-                        <div className="relative group">
-                            <div className="bg-gradient-to-br from-gray-100 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <span className="text-2xl font-bold text-white">2</span>
-                                </div>
-                                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mb-6 mx-auto shadow-md">
-                                    <WandIcon className="h-10 w-10 text-blue-600" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                                    AI Converts Instantly
-                                </h3>
-                                <p className="text-gray-500 text-center leading-relaxed">
-                                    Our AI processes your document, ensuring full ADA & WCAG 2.1
-                                    compliance automatically
-                                </p>
-                            </div>
-                            <div className="hidden md:block absolute top-1/2 -right-6 transform -translate-y-1/2 z-10">
-                                <ArrowRightIcon className="h-8 w-8 text-blue-600" />
-                            </div>
-                        </div>
-                        {/* Step 3 */}
-                        <div className="relative group">
-                            <div className="bg-gradient-to-br from-gray-100 to-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                                <div className="absolute -top-4 -left-4 w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                                    <span className="text-2xl font-bold text-white">3</span>
-                                </div>
-                                <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center mb-6 mx-auto shadow-md">
-                                    <PenSquareIcon className="h-10 w-10 text-blue-600" />
-                                </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 text-center">
-                                    Edit & Download
-                                </h3>
-                                <p className="text-gray-500 text-center leading-relaxed">
-                                    Edit text, tables, and equations using our powerful editor
-                                    and get your accessible document.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Accessibility Section */}
-            <section className="bg-gradient-to-br from-gray-100 to-gray-50 py-16 sm:py-20 lg:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        {/* Left Visual */}
-                        <div className="order-2 lg:order-1">
-                            <div className="relative">
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-                                    <img
-                                        src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/5e06e1b0-ab8c-4951-295e-4b5da44f4500/publicContain"
-                                        alt="Abstract digital folder icon on circuit board."
-                                        className="w-full h-auto"
-                                    />
-                                </div>
-                                {/* Floating Badge */}
-                                <div className="absolute -bottom-6 -right-6 bg-white rounded-xl px-6 py-4 shadow-xl">
-                                    <div className="flex items-center gap-2 mb-1">
-                                        <div className="w-6 h-6 p-1 bg-green-500 rounded-full flex items-center justify-center">
-                                            <CheckIcon className="text-white h-4 w-4" />
+                    <div className="flex justify-center">
+                        <div className="space-y-6 w-1/2">
+                            {[
+                                {
+                                    n: 1,
+                                    title: 'Upload Your PDF',
+                                    body: 'Simply drag and drop your handwritten notes or digital documents in PDF format',
+                                    IconCmp: Upload,
+                                },
+                                {
+                                    n: 2,
+                                    title: 'AI Converts Instantly',
+                                    body: 'Our AI processes your document, ensuring full ADA & WCAG 2.1 compliance automatically',
+                                    IconCmp: Wand2,
+                                },
+                                {
+                                    n: 3,
+                                    title: 'Edit & Download',
+                                    body: 'Edit text, tables, and equations using our powerful editor and get your accessible document.',
+                                    IconCmp: PenSquare,
+                                },
+                            ].map((step, i) => (
+                                <div key={step.n} className="relative flex gap-4 group">
+                                    {i < 2 && (
+                                        <div className="absolute left-6 top-16 bottom-0 w-0.5 bg-gradient-to-b from-blue-500/30 to-transparent hidden lg:block" />
+                                    )}
+                                    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg z-10">
+                                        <span className="text-lg font-bold text-white">{step.n}</span>
+                                    </div>
+                                    <div className="flex-1 shadow-md hover:shadow-lg transition-all duration-300 bg-white rounded-xl border border-slate-200">
+                                        <div className="p-5">
+                                            <div className="flex items-start gap-4">
+                                                <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <step.IconCmp className="text-blue-600 text-xl w-6 h-6" />
+                                                </div>
+                                                <div className="flex-1">
+                                                    <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                                                    <p className="text-sm text-slate-600 leading-relaxed">{step.body}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <span className="text-lg font-bold text-gray-900">
-                                            ADA Compliant
-                                        </span>
                                     </div>
-                                    <p className="text-sm text-gray-500">WCAG 2.1 Level AA</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div className="w-full bg-white py-20 px-10 overflow-hidden border-b border-slate-100">
+                <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between relative gap-12 lg:gap-6">
+                    <div className="relative w-full max-w-sm h-[30rem] shrink-0">
+                        <div className="absolute inset-0 bg-white border border-slate-200 rounded-xl shadow-sm rotate-3" />
+                        <div className="absolute inset-0 bg-white border border-slate-200 rounded-xl shadow-sm -rotate-2" />
+                        <div className="absolute inset-0 bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl shadow-lg overflow-hidden">
+                            <img src={IMG.handwritten} alt="Handwritten note" className="w-full h-full object-cover" />
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col gap-6 z-10 lg:mx-4">
+                        <div className="w-16 h-16 bg-white border border-slate-200 shadow-md rounded-xl flex flex-col items-center justify-center text-blue-600">
+                            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Text</span>
+                        </div>
+                        <div className="w-16 h-16 bg-white border border-slate-200 shadow-md rounded-xl flex flex-col items-center justify-center text-blue-600">
+                            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Image</span>
+                        </div>
+                        <div className="w-16 h-16 bg-white border border-slate-200 shadow-md rounded-xl flex flex-col items-center justify-center text-blue-600">
+                            <span className="text-xl font-serif font-bold mb-1">∑</span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Math</span>
+                        </div>
+                    </div>
+
+                    <div className="absolute inset-0 pointer-events-none hidden lg:block">
+                        <svg className="w-full h-full" viewBox="0 0 1000 400" fill="none" preserveAspectRatio="xMidYMid meet">
+                            <path d="M 333 124 L 398 124" stroke="#e2e8f0" strokeWidth="2" />
+                            <path d="M 333 200 L 398 200" stroke="#e2e8f0" strokeWidth="2" />
+                            <path d="M 333 276 L 398 276" stroke="#e2e8f0" strokeWidth="2" />
+                            <path d="M 454 124 Q 508 162 561 200" stroke="#2563eb" strokeWidth="2.5" />
+                            <path d="M 454 200 Q 508 200 561 200" stroke="#2563eb" strokeWidth="2.5" />
+                            <path d="M 454 276 Q 508 238 561 200" stroke="#2563eb" strokeWidth="2.5" />
+                            <path d="M 561 200 L 668 200" stroke="#2563eb" strokeWidth="3" />
+                        </svg>
+                    </div>
+
+                    <div className="relative z-10 flex flex-col items-center justify-center gap-4">
+                        <div className="w-28 h-28 bg-white rounded-[2rem] shadow-2xl flex items-center justify-center border-4 border-slate-50 overflow-hidden p-2 transition-transform hover:scale-105 duration-300">
+                            <img src={SMART_NOTE_LOGO} alt="Smart Note Logo" className="w-full h-full object-contain" />
+                        </div>
+                    </div>
+
+                    <div className="relative w-full max-w-sm h-[30rem] shrink-0">
+                        <div className="absolute inset-0 bg-white border-2 border-blue-600 rounded-xl shadow-2xl flex flex-col overflow-hidden">
+                            <div className="flex-1 min-h-0 relative">
+                                <img src={IMG.digital} alt="Accessible digital PDF" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex gap-2 p-2 flex-shrink-0">
+                                <div className="px-2 py-1 bg-green-600 text-white text-[8px] font-bold rounded shadow-sm">ADA COMPLIANT</div>
+                                <div className="px-2 py-1 bg-blue-600 text-white text-[8px] font-bold rounded shadow-sm">WCAG 2.1</div>
+                            </div>
+                        </div>
+                        <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-600 rounded-full border-4 border-white flex items-center justify-center text-white shadow-lg">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="w-full bg-slate-50 py-24 px-6 border-b border-slate-100">
+                <div className="max-w-4xl mx-auto text-center mb-16">
+                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">Powerful Document Editor</h2>
+                    <p className="text-lg text-slate-600">
+                        Our intelligent editor automatically detects structures, equations, and images, allowing you to focus on content while
+                        we handle compliance.
+                    </p>
+                </div>
+                <div className="relative mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white shadow-2xl overflow-hidden">
+                    <div className="aspect-video bg-slate-100 flex items-center justify-center overflow-hidden">
+                        <img src={IMG.mainLayout} alt="Split screen editor" className="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+
+            <section id="features" className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="mb-16 text-left max-w-2xl">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Built for what others miss.</h2>
+                        <p className="text-slate-600 text-lg">
+                            We go beyond simple OCR. We rebuild the semantic structure of your documents for true accessibility.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                        <div className="md:col-span-8 bg-blue-50/80 rounded-3xl p-8 border border-blue-100 flex flex-col gap-6">
+                            <div>
+                                <h3 className="text-2xl font-bold mb-2 text-slate-900">Centralized Library</h3>
+                                <p className="text-slate-600">
+                                    Manage your entire accessibility workflow. Track conversion history, organize by project, and bulk-export
+                                    compliant PDFs.
+                                </p>
+                            </div>
+                            <div className="w-full rounded-2xl border border-blue-100 bg-white flex-1 overflow-hidden shadow-sm">
+                                <img src={IMG.documentsView} alt="Documents dashboard view" className="w-full h-full object-cover" />
+                            </div>
+                        </div>
+
+                        <div className="md:col-span-4 bg-blue-600 rounded-3xl p-8 text-white shadow-lg shadow-blue-600/20">
+                            <div className="flex mb-6 items-center gap-2">
+                                <div className="h-12 w-12 bg-white/20 rounded-xl flex items-center justify-center">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                                <h3 className="text-2xl font-bold">Smart Alt-Text</h3>
+                            </div>
+                            <p className="text-white/90 text-sm leading-relaxed mb-6">
+                                Automatically generates both short Alt-text and comprehensive long descriptions for complex diagrams and charts.
+                            </p>
+                            <div className="mb-4 rounded-xl overflow-hidden border border-white/20 bg-white/5 flex justify-center p-4">
+                                <img src={IMG.barGraph} alt="Bar chart" className="w-48 h-auto object-contain" />
+                            </div>
+                            <div className="bg-white/10 rounded-xl p-4 border border-white/20">
+                                <p className="text-[10px] text-white/80 uppercase font-bold mb-2">Live Long-Description:</p>
+                                <p className="text-xs italic text-white/90">
+                                    &quot;Bar chart illustrating a 24% year-over-year increase in document processing efficiency...&quot;
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="md:col-span-4 bg-white rounded-3xl p-8 border border-slate-200">
+                            <div className="flex items-center gap-2 mb-6">
+                                <div className="h-12 w-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center font-bold text-xl">
+                                    ∑
+                                </div>
+                                <h3 className="text-xl font-bold text-slate-900">Human-Readable Math</h3>
+                            </div>
+                            <p className="text-slate-600 text-sm mb-6">
+                                We convert LaTeX and MathML into natural language descriptions that screen readers can communicate perfectly.
+                            </p>
+                            <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center font-serif text-lg text-slate-800">
+                                {'$$\\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$'}
+                                <div className="mt-4 text-[10px] text-blue-600 font-sans font-bold uppercase tracking-tighter">
+                                    Read aloud as: &quot;Quadratic formula, negative b plus or minus...&quot;
                                 </div>
                             </div>
                         </div>
-                        {/* Right Content */}
-                        <div className="order-1 lg:order-2">
-                            <div className="inline-flex items-center bg-white rounded-full px-4 py-2 shadow-md mb-6">
-                                <div className="w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center mr-2">
-                                    <PersonStandingIcon className="text-white h-3 w-3" />
-                                </div>
-                                <span className="text-sm font-semibold text-gray-900">#1 Feature</span>
+
+                        <div className="md:col-span-8 bg-slate-50 rounded-3xl p-8 border border-slate-200 flex flex-col justify-between">
+                            <div>
+                                <h3 className="text-2xl font-bold mb-2 text-slate-900">Advanced Editor</h3>
+                                <p className="text-slate-600 mb-6">
+                                    Take full control. Edit converted text, adjust table cell properties, and verify accessibility tags in a
+                                    professional-grade interface.
+                                </p>
                             </div>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                                Unlock Universal
-                                <span className="text-blue-600"> Accessibility</span>
-                            </h2>
-                            <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                                Smart Note ensures every document meets the highest accessibility
-                                standards, making your content accessible to everyone, everywhere.
-                            </p>
-                            {/* Compliance Features */}
-                            <div className="space-y-4 mb-8">
-                                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-md">
-                                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <AwardIcon className="text-blue-600 h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-gray-900 mb-1">
-                                            ADA & WCAG 2.1 Compliant
-                                        </h3>
-                                        <p className="text-sm text-gray-500">
-                                            Full compliance with accessibility regulations and standards
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-md">
-                                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <ShieldCheckIcon className="text-blue-600 h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-gray-900 mb-1">
-                                            Verified by Trusted Checkers
-                                        </h3>
-                                        <p className="text-sm text-gray-500">
-                                            Passes axes4, PAC Report, and other leading accessibility audits
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-4 bg-white rounded-xl p-4 shadow-md">
-                                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <UsersIcon className="text-blue-600 h-6 w-6" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-gray-900 mb-1">
-                                            Inclusive for All Users
-                                        </h3>
-                                        <p className="text-sm text-gray-500">
-                                            Screen readers, assistive technology, and visual accommodations supported
-                                        </p>
-                                    </div>
-                                </div>
+                            <div className="rounded-2xl border border-slate-200 bg-white h-56 flex flex-col items-center justify-center p-2 text-center shadow-sm overflow-hidden">
+                                <img src={IMG.editorOptions} alt="Editor toolbar options" className="w-full h-full object-contain" />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Editor Features Section */}
-            <section id="editor-features" className="bg-white py-16 sm:py-20 lg:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        {/* Left Content */}
-                        <div>
-                            <div className="inline-flex items-center bg-gray-100 rounded-full px-4 py-2 shadow-md mb-6">
-                                <RulerIcon className="text-blue-600 mr-2 h-4 w-4" />
-                                <span className="text-sm font-semibold text-gray-900">Powerful Editor</span>
-                            </div>
-                            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                                Full Control with
-                                <span className="text-blue-600"> Advanced Editor</span>
-                            </h2>
-                            <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                                Don't just convert - customize. Our intuitive editor gives you
-                                complete control over your documents with professional-grade tools.
-                            </p>
-                            {/* Editor Features Grid */}
-                            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <TypeIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">Rich Text Editing</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <TableIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">Table Management</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <RadicalIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">MathType Support</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <ImageIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">Image Integration</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <PaletteIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">Formatting Tools</span>
-                                </div>
-                                <div className="flex items-center gap-3 bg-gray-100 rounded-lg p-4">
-                                    <LinkIcon className="text-blue-600 h-6 w-6" />
-                                    <span className="font-semibold text-gray-900">Hyperlinks & TOC</span>
-                                </div>
-                            </div>
-                        </div>
-                        {/* Right Visual */}
-                        <div className="relative">
-                            <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500">
-                                <img
-                                    src="https://imagedelivery.net/xaKlCos5cTg_1RWzIu_h-A/747ec462-b4eb-4250-1069-71e93ecc7b00/public"
-                                    alt="UI/UX design interface with data visualization."
-                                    className="w-full h-auto"
-                                />
-                            </div>
-                            {/* Floating Feature Badge */}
-                            <div className="absolute -top-6 -left-6 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl px-6 py-4 shadow-xl transform rotate-3">
-                                <p className="text-white font-bold text-lg">Professional Grade</p>
-                                <p className="text-white text-sm opacity-90">Industry-Standard Tools</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Pricing Section */}
-            <section id="pricing" className="bg-gradient-to-br from-gray-900 to-gray-800 py-16 sm:py-20 lg:py-24 relative overflow-hidden">
-                {/* Decorative Background */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500 rounded-full blur-3xl"></div>
+            <section id="pricing" className="bg-slate-50 py-16 sm:py-20 lg:py-24 relative overflow-hidden border-t border-slate-100">
+                <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full blur-3xl" />
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500 rounded-full blur-3xl" />
                 </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    {/* Section Header */}
                     <div className="text-center mb-16">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-                            Simple, Risk-Free Pricing
-                        </h2>
-                        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-                            Start free with 20 credits. Only pay for what you use with our
-                            transparent pay-per-page model.
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4">Simple, Risk-Free Pricing</h2>
+                        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                            Start free with 20 credits. Only pay for what you use with our transparent pay-per-page model.
                         </p>
                     </div>
-                    {/* Pricing Cards */}
+
                     <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                        {/* Pay As You Go Card */}
                         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
                             <div className="bg-gradient-to-r from-blue-600 to-blue-700 py-3 text-center">
-                                <span className="font-bold text-white text-sm uppercase tracking-wider">
-                                    Most Popular Plan
-                                </span>
+                                <span className="font-bold text-white text-sm uppercase tracking-wider">Most Popular Plan</span>
                             </div>
                             <div className="p-8 sm:p-12">
                                 <div className="text-center mb-8">
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Pay As You Go</h3>
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-4">Pay As You Go</h3>
                                     <div className="flex items-center justify-center gap-2 mb-2">
                                         <span className="text-5xl font-bold text-blue-600">$0</span>
-                                        <span className="text-xl text-gray-500">to start</span>
+                                        <span className="text-xl text-slate-500">to start</span>
                                     </div>
-                                    <p className="text-gray-500">1 Credit = 1 Page Converted</p>
-                                    <p className="text-lg font-semibold text-gray-900 mt-2">
-                                        Only $0.15 per credit
-                                    </p>
+                                    <p className="text-slate-600">1 Credit = 1 Page Converted</p>
+                                    <p className="text-lg font-semibold text-slate-900 mt-2">Only $0.15 per credit</p>
                                 </div>
-                                {/* Features List */}
                                 <div className="space-y-4 mb-8">
                                     {[
-                                        { title: "20 Free Credits to Start", desc: "Convert 20 pages completely free - no credit card required" },
-                                        { title: "Full ADA & WCAG 2.1 Compliance", desc: "Every conversion meets accessibility standards" },
-                                        { title: "Advanced Editor Access", desc: "Edit text, tables, equations with MathType support" },
-                                        { title: "Fast AI Processing", desc: "Documents ready in minutes, not hours" },
-                                        { title: "No Subscriptions or Hidden Fees", desc: "Buy credits only when you need them" },
-                                        { title: "Priority Support", desc: "Get help when you need it from our team" },
-                                    ].map((feature, index) => (
-                                        <div key={index} className="flex items-start gap-3">
-                                            <CheckIcon className="text-blue-600 h-5 w-5 mt-1 flex-shrink-0" />
+                                        ['20 Free Credits to Start', 'Convert 20 pages completely free - no credit card required'],
+                                        ['Full ADA & WCAG 2.1 Compliance', 'Every conversion meets accessibility standards'],
+                                        ['Advanced Editor Access', 'Edit text, tables, equations with MathType support'],
+                                        ['Fast AI Processing', 'Documents ready in minutes, not hours'],
+                                        ['No Subscriptions or Hidden Fees', 'Buy credits only when you need them'],
+                                        ['Priority Support', 'Get help when you need it from our team'],
+                                    ].map(([title, desc]) => (
+                                        <div key={title} className="flex items-start gap-3">
+                                            <Check className="text-blue-600 text-xl mt-1 flex-shrink-0 w-5 h-5" />
                                             <div>
-                                                <p className="font-semibold text-gray-900">{feature.title}</p>
-                                                <p className="text-sm text-gray-500">{feature.desc}</p>
+                                                <p className="font-semibold text-slate-900">{title}</p>
+                                                <p className="text-sm text-slate-600">{desc}</p>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                                {/* CTA Button */}
                                 <a
                                     href="https://ada.encando.com"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl text-lg py-4 rounded-lg font-semibold flex items-center justify-center transition-all"
+                                    className="w-full bg-blue-600 text-white hover:bg-blue-700 shadow-xl hover:shadow-2xl text-lg py-3 rounded-lg font-semibold flex items-center justify-center transition-all group"
                                 >
                                     Start for Free
-                                    <ArrowRightIcon className="ml-2 h-4 w-4" />
+                                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
                                 </a>
-                                <p className="text-center text-sm text-gray-500 mt-4">
-                                    No credit card required • Credits never expire
-                                </p>
+                                <p className="text-center text-sm text-slate-500 mt-4">No credit card required • Credits never expire</p>
                             </div>
                         </div>
 
-                        {/* For Institutions Card */}
                         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
                             <div className="bg-green-500 py-3 text-center">
-                                <span className="font-bold text-white text-sm uppercase tracking-wider">
-                                    For Institutions
-                                </span>
+                                <span className="font-bold text-white text-sm uppercase tracking-wider">For Institutions</span>
                             </div>
                             <div className="p-8 sm:p-12 flex flex-col h-full">
                                 <div className="mb-6">
-                                    <h4 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
-                                        Ready to Make{" "}
-                                        <span className="text-green-500">Your Documents Accessible?</span>
+                                    <h4 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-4">
+                                        Ready to Make <span className="text-green-500">Your Documents Accessible?</span>
                                     </h4>
-                                    <p className="text-base sm:text-lg text-gray-900 font-medium">
-                                        Join leading institutions and professionals who trust Smart
-                                        Note to convert handwritten notes into fully accessible
-                                        digital documents.
+                                    <p className="text-base sm:text-lg text-slate-900 font-medium">
+                                        Join leading institutions and professionals who trust Smart Note to convert handwritten notes into
+                                        fully accessible digital documents.
                                     </p>
                                 </div>
-
-                                <div className="space-y-4 mb-11">
+                                <div className="space-y-4 mb-9">
                                     {[
-                                        { title: "20 Free Credits for every member", desc: "Convert 20 pages completely free - no credit card required" },
-                                        { title: "Full ADA & WCAG 2.1 Compliance", desc: "Every conversion meets accessibility standards" },
-                                        { title: "Advanced Editor Access", desc: "Edit text, tables, equations with MathType support" },
-                                        { title: "Fast AI Processing", desc: "Documents ready in minutes, not hours" },
-                                        { title: "Buy credits for your entire institution", desc: null },
-                                        { title: "Priority Support", desc: "Get help when you need it from our team" },
-                                    ].map((feature, index) => (
-                                        <div key={index} className="flex items-start gap-3">
-                                            <CheckIcon className="text-green-500 h-5 w-5 mt-1 flex-shrink-0" />
+                                        ['20 Free Credits for every member', 'Convert 20 pages completely free - no credit card required'],
+                                        ['Full ADA & WCAG 2.1 Compliance', 'Every conversion meets accessibility standards'],
+                                        ['Advanced Editor Access', 'Edit text, tables, equations with MathType support'],
+                                        ['Fast AI Processing', 'Documents ready in minutes, not hours'],
+                                        ['Buy credits for your entire institution', null],
+                                        ['Priority Support', 'Get help when you need it from our team'],
+                                    ].map(([title, desc]) => (
+                                        <div key={title} className="flex items-start gap-3">
+                                            <Check className="text-green-600 text-xl mt-1 flex-shrink-0 w-5 h-5" />
                                             <div>
-                                                <p className="font-semibold text-gray-900">{feature.title}</p>
-                                                {feature.desc && <p className="text-sm text-gray-500">{feature.desc}</p>}
+                                                <p className="font-semibold text-slate-900">{title}</p>
+                                                {desc && <p className="text-sm text-slate-600">{desc}</p>}
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                                {/* CTA Button */}
                                 <a
                                     href="https://calendly.com/rujun-encando/30min"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-green-500 text-white hover:bg-green-600 shadow-xl hover:shadow-2xl text-lg py-4 rounded-lg font-semibold flex items-center justify-center transition-all"
+                                    className="w-full bg-green-500 text-white hover:bg-green-600 shadow-xl hover:shadow-2xl text-lg mt-2 py-3 inline-flex items-center justify-center rounded-lg font-semibold transition-colors"
                                 >
                                     Contact Us
                                 </a>
-                                <p className="text-center text-sm text-gray-500 mt-4">
-                                    Contact us for a quote
-                                </p>
+                                <p className="text-center text-sm text-slate-500 mt-4">Contact us for a quote</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials Section */}
-            <section id="testimonials" className="bg-white py-16 sm:py-20 lg:py-24">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                            Trusted by Leading Institutions
-                        </h2>
-                        <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-                            Join thousands of professionals and institutions who trust Smart Note
-                            for their accessibility needs.
-                        </p>
                     </div>
                 </div>
             </section>

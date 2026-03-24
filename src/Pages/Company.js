@@ -144,15 +144,16 @@ const HeroSection = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-1">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight">
           <span className="block">AI-Powered </span>
-          <span className="block text-[var(--color-primary-light)]">
-            Higher Education Platform
+          <span className="block text-[var(--color-primary-light)] text-4xl md:text-6xl">
+            Ecosystem for Teaching and Learning
           </span>
         </h1>
         <p className="mt-6 max-w-4xl mx-auto text-lg md:text-2xl text-[var(--color-text-primary)]">
           {/* Encando's AI platform, ChaTA, empowers educators and engages students with deeply personalized learning experiences—delivered anytime, anywhere. Free your faculty from repetitive tasks and give every student the support they need to succeed. */}
-          At Encando, we harness advanced AI to transform higher education
+          {/* At Encando, we harness advanced AI to transform higher education
           through deeply personalized learning experiences—delivered at scale,
-          anytime, anywhere.
+          anytime, anywhere. */}
+          We're building the intelligence infrastructure for lifelong learning - enabling anyone to teach and every learner to receive personalized, context-aware support anytime, anywhere.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 md:text-xl">
           <a
