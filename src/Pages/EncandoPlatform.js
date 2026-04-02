@@ -74,6 +74,26 @@ function EncandoPlatform() {
           </div>
         </section>
 
+        <section className="product-introduction-section">
+          <div className="product-introduction-container">
+            <h2 className="product-introduction-title">Featured Talk</h2>
+            <p className="mt-4 max-w-3xl mx-auto text-lg text-[var(--color-text-primary)]">
+              How responsible AI supports learning without replacing the effort behind it — and how Encando puts that into practice.
+            </p>
+            <div className="video-frame-container">
+              <div className="video-aspect-ratio-keeper">
+                <iframe
+                  src="https://www.youtube.com/embed/MX5cnV0wiPc"
+                  title="Effort is the Algorithm for Learning: Responsible AI for Engineering Education"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="product-pricing-section" id="pricing">
           <div className="product-pricing-container">
             <h2 className="product-pricing-title">
