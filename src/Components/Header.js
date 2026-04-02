@@ -21,16 +21,20 @@ const Header = () => {
     return (
         <>
             <header className="bg-[#f9fafb] backdrop-blur-xl sticky top-0  z-50">
-                <div className="bg-gradient-to-r from-amber-50 to-orange-50 text-gray-800 text-center py-2 px-4 text-sm border-b border-amber-200">
-                    <span className="font-medium">🚀 <strong>New Product!</strong>{" "} Smart Note — Convert handwritten & digital PDFs to ADA-compliant accessible documents in minutes. {" "}</span>
-                    <a 
-                        href="https://ada.encando.com" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="underline font-semibold hover:text-blue-800 transition-colors"
-                    >
-                        Check it out here →
-                    </a>
+                <div className="bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 text-white py-2.5 px-4">
+                    <div className="max-w-7xl mx-auto flex items-center justify-center gap-3 flex-wrap text-center text-sm md:text-base">
+                        <span className="font-medium">
+                            🚀 <strong>New Product!</strong> Smart Note - Convert handwritten &amp; digital PDFs to ADA-compliant accessible documents in minutes.{' '}
+                        </span>
+                        <a
+                            href="https://ada.encando.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold underline underline-offset-2 decoration-white/80 hover:text-white hover:decoration-white transition-colors shrink-0"
+                        >
+                            Check it out here →
+                        </a>
+                    </div>
                 </div>
                 <div className="header-content p-4">
                     <Link to="/" className="header-logo-container">
