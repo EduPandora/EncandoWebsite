@@ -735,13 +735,33 @@ const testimonials = [
           improve their work
         </span>{" "}
         before their final submission.
+        <span className="block mt-4">
+          Encando quiz generation has{" "}
+          <span className="text-[var(--color-primary)] font-semibold">
+            excellent potential to reduce faculty workload
+          </span>{" "}
+          and support the creation of{" "}
+          <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">
+            fair, comparable questions
+          </span>
+          . Its{" "}
+          <span className="text-[var(--color-primary)] font-semibold">
+            interactive question-generation process is unique and effective
+          </span>
+          , and the developing{" "}
+          <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">
+            question bank
+          </span>{" "}
+          provides a systematic way to organize questions, identify comparable
+          items, and efficiently retrieve balanced sets of questions.
+        </span>
       </>
     ),
     name: "Kim Haejune",
     title: "Instructional Associate Professor, Mechanical Engineering",
     institution: "Texas A&M University",
     image: `${process.env.PUBLIC_URL}/assets/images/testimonials/haejune-kim.jpg`,
-    textSize: "text-base md:text-base lg:text-lg",
+    textSize: "text-sm md:text-base lg:text-lg",
   },
   {
     id: 3,
@@ -807,6 +827,58 @@ const testimonials = [
     title: "Professor, Mechanical Engineering",
     institution: "Texas A&M University",
     image: `${process.env.PUBLIC_URL}/assets/team-photos/ArunSrinivasa.jpg`,
+    textSize: "text-sm md:text-base lg:text-base",
+  },
+  {
+    id: 5,
+    quote: (
+      <>
+        The quiz generation feature has{" "}
+        <span className="text-[var(--color-primary)] font-semibold">
+          strong potential
+        </span>{" "}
+        to help instructors create{" "}
+        <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">
+          comparable assessment questions more efficiently
+        </span>{" "}
+        while maintaining{" "}
+        <span className="text-[var(--color-primary)] font-semibold">
+          pedagogical quality
+        </span>
+        .
+      </>
+    ),
+    name: "Mahmoud Abido",
+    title: "Instructional Assistant Professor, Mechanical Engineering",
+    institution: "Texas A&M University",
+    textSize: "text-base md:text-lg lg:text-lg",
+  },
+  {
+    id: 6,
+    quote: (
+      <>
+        Encando's quiz generation feature has the potential to be a{" "}
+        <span className="text-[var(--color-primary)] font-semibold">
+          game-changer
+        </span>{" "}
+        in the way assessments are developed and deployed. The ability to{" "}
+        <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">
+          rapidly create effective, differentiated quizzes
+        </span>{" "}
+        on specific topics will allow me to shift my teaching approach toward{" "}
+        <span className="text-[var(--color-primary)] font-semibold">
+          mastery learning
+        </span>
+        . I am excited about the{" "}
+        <span className="bg-[var(--color-primary)]/10 px-1 rounded font-semibold">
+          new possibilities for teaching and assessment
+        </span>{" "}
+        that Encando's quiz-generation capabilities will provide.
+      </>
+    ),
+    name: "John Haglund",
+    title: "Instructional Associate Professor, Mechanical Engineering",
+    institution: "Texas A&M University",
     textSize: "text-sm md:text-base lg:text-base",
   },
 ];
