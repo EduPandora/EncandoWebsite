@@ -735,7 +735,6 @@ const testimonials = [
           improve their work
         </span>{" "}
         before their final submission.
-        <span className="block mt-4">
           Encando quiz generation has{" "}
           <span className="text-[var(--color-primary)] font-semibold">
             excellent potential to reduce faculty workload
@@ -754,14 +753,13 @@ const testimonials = [
           </span>{" "}
           provides a systematic way to organize questions, identify comparable
           items, and efficiently retrieve balanced sets of questions.
-        </span>
       </>
     ),
     name: "Kim Haejune",
     title: "Instructional Associate Professor, Mechanical Engineering",
     institution: "Texas A&M University",
     image: `${process.env.PUBLIC_URL}/assets/images/testimonials/haejune-kim.jpg`,
-    textSize: "text-sm md:text-base lg:text-lg",
+    textSize: "text-sm md:text-base lg:text-base",
   },
   {
     id: 3,
@@ -851,6 +849,7 @@ const testimonials = [
     name: "Mahmoud Abido",
     title: "Instructional Assistant Professor, Mechanical Engineering",
     institution: "Texas A&M University",
+    image: `${process.env.PUBLIC_URL}/assets/images/testimonials/mahmoud-abido.png`,
     textSize: "text-base md:text-lg lg:text-lg",
   },
   {
@@ -879,6 +878,7 @@ const testimonials = [
     name: "John Haglund",
     title: "Instructional Associate Professor, Mechanical Engineering",
     institution: "Texas A&M University",
+    image: `${process.env.PUBLIC_URL}/assets/images/testimonials/john-haglund.png`,
     textSize: "text-sm md:text-base lg:text-base",
   },
 ];
